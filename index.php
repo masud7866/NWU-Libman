@@ -7,16 +7,18 @@
  */
 ?>
 
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>HELLO</title>
+    <title>NWU-Libman</title>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
 </head>
-
 <body>
+<div class="container">
 
-    <P>hello world!</P>
-
+</div>
 </body>
-
 </html>
