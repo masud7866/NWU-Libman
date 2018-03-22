@@ -23,7 +23,7 @@
             <h1 align="center">Log In</h1>
         </div>
         <div class="panel-body">
-            <div class="formCener">
+            <div class="formCenter">
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="email">Email</label>
