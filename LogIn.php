@@ -8,7 +8,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>mm
+<html>
 <head>
     <title>NWU-Libman</title>
     <link rel="stylesheet" href="assets/css/style.css"/>
