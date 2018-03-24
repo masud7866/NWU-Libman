@@ -10,7 +10,8 @@
 <html>
 <head>
     <title>NWU-Libman</title>
-    <link rel="stylesheet" href="../assets/css/style.css"/>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
     <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
 </head>
 <body>
