@@ -21,15 +21,14 @@
     <nav>
         <ul>
             <li class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     <span><i class="fas fa-book"></i></i></span>
                     <span>Books</span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <div class="dropdown-divider"></div>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="#">Add Books</a></li>
+                    <li><a class="dropdown-item" href="#">View Books</a></li>
                 </ul>
             </li>
             <li>
