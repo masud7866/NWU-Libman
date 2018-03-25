@@ -22,11 +22,14 @@ class books_add extends template
     {
         ?>
         <div class="container">
-            ul
+            <form>
+
+            </form>
 
         </div>
         <?php
     }
+
 }
 
 

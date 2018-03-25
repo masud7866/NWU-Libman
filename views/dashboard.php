@@ -20,7 +20,7 @@ class dashboard extends template{
     {
         ?>
         <div class="container">
-            test
+            Content of Dashboard
 
         </div>
 <?php

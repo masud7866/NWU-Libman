@@ -28,7 +28,14 @@ class template
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-            <title>NWU-Libman</title>
+            <title>
+                <?php
+                if (method_exists ($this,'title'))
+                {
+                    echo $this->title();
+                }
+                ?>
+                -NWU-Libman</title>
 
             <!-- Bootstrap CSS CDN -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -45,40 +52,59 @@ class template
                     <h3>NWU-Libman</h3>
                 </div>
 
-                <ul class="list-unstyled components">
-                    <p>Manager Panel</p>
-                    <li class="active">
-                        <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
-                        <ul class="collapse list-unstyled" id="bookSubmenu">
-                            <li><a href="#">Add Books</a></li>
-                            <li><a href="#">View Books</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#managerSubmenu" data-toggle="collapse" aria-expanded="false">Managers</a>
-                        <ul class="collapse list-unstyled" id="managerSubmenu">
-                            <li><a href="#">Add Managers</a></li>
-                            <li><a href="#">Views</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Stuffs</a>
-                    </li>
-                    <li>
-                        <a href="#">Members</a>
-                    </li>
-                    <li class="active">
-                        <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false">Profile</a>
-                        <ul class="collapse list-unstyled" id="profileSubmenu">
-                            <li><a href="#">Edit Profile</a></li>
-                            <li><a href="#">Change Password</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <?php
+                if (method_exists ($this,'menu'))
+                {
+                    echo $this->menu();
+                }
+                else
+                {
+                    ?>
+                    <ul class="list-unstyled components">
+                        <p>Manager Panel</p>
+                        <li><a href="#">Dashboard</a> </li>
+                        <li>
+                            <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
+                            <ul class="collapse list-unstyled" id="bookSubmenu">
+                                <li><a href="#">Add Books</a></li>
+                                <li><a href="#">View Books</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#managerSubmenu" data-toggle="collapse" aria-expanded="false">Managers</a>
+                            <ul class="collapse list-unstyled" id="managerSubmenu">
+                                <li><a href="#">Add Managers</a></li>
+                                <li><a href="#">Views</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Stuffs</a>
+                        </li>
+                        <li>
+                            <a href="#">Members</a>
+                        </li>
+                        <li>
+                            <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false">Profile</a>
+                            <ul class="collapse list-unstyled" id="profileSubmenu">
+                                <li><a href="#">Edit Profile</a></li>
+                                <li><a href="#">Change Password</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <?php
+                }
+                ?>
+
             </nav>
 
             <!-- Page Content Holder -->
             <div id="content">
+                <?php
+                if (method_exists ($this,'content'))
+                {
+                    echo $this->content();
+                }
+                ?>
 
             </div>
         </div>
