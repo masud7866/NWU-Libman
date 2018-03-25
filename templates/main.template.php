@@ -30,8 +30,7 @@ class template
 
             <title>
                 <?php
-                if (method_exists ($this,'title'))
-                {
+                if (method_exists($this, 'title')) {
                     echo $this->title();
                 }
                 ?>
@@ -44,25 +43,37 @@ class template
         </head>
         <body>
 
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <h2>NWU-Libman</h2>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         <div class="wrapper">
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>NWU-Libman</h3>
+                    <h3>Manager Panel</h3>
                 </div>
 
                 <?php
-                if (method_exists ($this,'menu'))
-                {
+                if (method_exists($this, 'menu')) {
                     echo $this->menu();
-                }
-                else
-                {
+                } else {
                     ?>
                     <ul class="list-unstyled components">
-                        <p>Manager Panel</p>
-                        <li><a href="#">Dashboard</a> </li>
                         <li>
                             <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
                             <ul class="collapse list-unstyled" id="bookSubmenu">
@@ -97,11 +108,11 @@ class template
 
             </nav>
 
+
             <!-- Page Content Holder -->
             <div id="content">
                 <?php
-                if (method_exists ($this,'content'))
-                {
+                if (method_exists($this, 'content')) {
                     echo $this->content();
                 }
                 ?>
