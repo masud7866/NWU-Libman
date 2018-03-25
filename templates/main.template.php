@@ -19,6 +19,7 @@ class template
             <link rel="stylesheet" href="../assets/css/main.css"/>
             <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
             <link rel="stylesheet" href="../assets/font-awesome/css/fontawesome-all.min.css"/>
+
         </head>
         <body>
         <div class="header">
@@ -35,6 +36,9 @@ class template
             </div>
             <nav>
                 <ul>
+                    <li><a href="#">
+                            <span><i class="fas fa-list-ol"></i></i></span>
+                            <span>Dashboard</span></a> </li>
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,7 +93,10 @@ class template
                     <div class="title">
                         <?php
                         echo $this->title();
+                        echo $this->content();
                         ?>
+
+
                     </div>
                     <div class="chart"></div>
                 </div>

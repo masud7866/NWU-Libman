@@ -16,6 +16,15 @@ class dashboard extends template{
             Dashboard
         <?php
     }
+    public function content()
+    {
+        ?>
+        <div class="container">
+            test
+
+        </div>
+<?php
+    }
 }
 
 

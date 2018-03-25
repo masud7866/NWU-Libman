@@ -10,9 +10,9 @@
 //Include this file where ever you need these constants
 define ('APPNAME',"NWU Libman");
 define ('DATABASE_HOST',"localhost");
-define ('DATABASE_USER',"libman");
-define ('DATABASE_PASS',"");    /*USE YOUR DATABASE USER PASSWORD */
-define ('DATABASE_DB',"libman");
+define ('DATABASE_USER',"root");
+define ('DATABASE_PASS',"7866");    /*USE YOUR DATABASE USER PASSWORD */
+define ('DATABASE_DB',"nwu_libman");
 
 
 /*
