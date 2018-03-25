@@ -276,3 +276,10 @@ body {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+.dropdown-menu
+{
+    background: #35475e !important;
+    color: white;
+
+}
