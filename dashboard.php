@@ -6,10 +6,22 @@
  * Time: 12:11 AM
  */
 
-include "src/header.php";
+include "templates/main.template.php";
 
-include "src/dash.php";
 
-include "src/footer.php";
+class dashboard extends template{
+    public function title()
+    {
+        ?>
+            Dashboard
+        <?php
+    }
+}
+
+
+$t = new dashboard();
+
+$t->layout();
+
 
 ?>
