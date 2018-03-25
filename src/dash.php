@@ -65,13 +65,5 @@
             <div class="title">ADMIN</div>
             <div class="chart"></div>
         </div>
-        <div class="widget">
-            <div class="title">ADMIN</div>
-            <div class="chart"></div>
-        </div>
-        <div class="widget">
-            <div class="title">ADMIN</div>
-            <div class="chart"></div>
-        </div>
     </div>
 </div>

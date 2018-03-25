@@ -6,17 +6,9 @@
  * Time: 7:09 PM
  */
 
-
-function get_footer(){
-
-
 ?>
-<script src="../assets/js/bootstrap.js"></script>
+
 <script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.js"></script>
 </body>
 </html>
-
-<?php
-}
-
-?>
