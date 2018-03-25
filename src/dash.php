@@ -9,45 +9,52 @@
 <div class="header">
     <div class="logo">
         <i class="fa fa-books"></i>
-        <span>NWU-Libman</span>
+        <span>Manager Panel</span>
     </div>
     <a href="#" class="nav-trigger"><span></span></a>
 </div>
 <div class="side-nav">
     <div class="logo">
-        <i class="fa fa-tachometer"></i>
-        <span>Admin Panel</span>
+        <span><i class="fas fa-book"></i></span>
+        <span>NWU-Libman</span>
     </div>
     <nav>
         <ul>
             <li>
                 <a href="#">
-                    <span><i class="fa fa-user"></i></span>
+                    <span><i class="fas fa-book"></i></i></span>
                     <span>Books</span>
                 </a>
             </li>
             <li>
                 <a href="#">
 
-                    <span><i class="fa fa-envelope"></i></span>
-                    <span>Manager</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#">
-                    <span><i class="fa fa-bar-chart"></i></span>
-                    <span>Staff</span>
+                    <span><i class="fas fa-user-circle"></i></span>
+                    <span>Managers</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span><i class="fa fa-credit-card-alt"></i></span>
-                    <span>Member</span>
+                    <span><i class="fas fa-users"></i></span>
+                    <span>Staffs</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span><i class="fas fa-users"></i></span>
+                    <span>Members</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span><i class="fas fa-user"></i></span>
+                    <span>Profile</span>
                 </a>
             </li>
         </ul>
     </nav>
 </div>
+
 <div class="main-content">
     <div class="title">
         DASHBOARD

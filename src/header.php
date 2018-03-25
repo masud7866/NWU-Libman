@@ -12,6 +12,6 @@
     <title>NWU-Libman</title>
     <link rel="stylesheet" href="../assets/css/main.css"/>
     <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
-    <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../assets/font-awesome/css/fontawesome-all.min.css"/>
 </head>
 <body>
