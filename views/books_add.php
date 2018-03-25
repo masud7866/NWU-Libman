@@ -6,29 +6,31 @@
  * Time: 12:11 AM
  */
 
-include "templates/main.template.php";
+include "../templates/main.template.php";
 
 
-class dashboard extends template{
+class books_add extends template
+{
     public function title()
     {
         ?>
-            Dashboard
+        Add Book
         <?php
     }
+
     public function content()
     {
         ?>
         <div class="container">
-            test
+            ul
 
         </div>
-<?php
+        <?php
     }
 }
 
 
-$t = new dashboard();
+$t = new books_add();
 
 $t->layout();
 

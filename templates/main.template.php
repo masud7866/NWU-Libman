@@ -6,6 +6,15 @@
  * Time: 9:02 PM
  */
 
+/*
+ *  -views
+ *   --manager
+ *   --staff
+ *
+ *
+ */
+
+
 class template
 {
     function layout()
@@ -15,100 +24,101 @@ class template
         <!DOCTYPE html>
         <html>
         <head>
-            <title>NWU-Libman</title>
-            <link rel="stylesheet" href="../assets/css/main.css"/>
-            <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
-            <link rel="stylesheet" href="../assets/font-awesome/css/fontawesome-all.min.css"/>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+            <title>NWU-Libman</title>
+
+            <!-- Bootstrap CSS CDN -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <!-- Our Custom CSS -->
+            <link rel="stylesheet" href="../assets/css/main.css">
         </head>
         <body>
-        <div class="header">
-            <div class="logo">
-                <i class="fa fa-books"></i>
-                <span>Manager Panel</span>
-            </div>
-            <a href="#" class="nav-trigger"><span></span></a>
-        </div>
-        <div class="side-nav">
-            <div class="logo">
-                <span><i class="fas fa-book"></i></span>
-                <span>NWU-Libman</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">
-                            <span><i class="fas fa-list-ol"></i></i></span>
-                            <span>Dashboard</span></a> </li>
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="fas fa-book"></i></i></span>
-                            <span>Books</span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>NWU-Libman</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p>Manager Panel</p>
+                    <li class="active">
+                        <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
+                        <ul class="collapse list-unstyled" id="bookSubmenu">
+                            <li><a href="#">Add Books</a></li>
+                            <li><a href="#">View Books</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
-
-                            <span><i class="fas fa-user-circle"></i></span>
-                            <span>Managers</span>
-                        </a>
+                        <a href="#managerSubmenu" data-toggle="collapse" aria-expanded="false">Managers</a>
+                        <ul class="collapse list-unstyled" id="managerSubmenu">
+                            <li><a href="#">Add Managers</a></li>
+                            <li><a href="#">Views</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <span><i class="fas fa-users"></i></span>
-                            <span>Staffs</span>
-                        </a>
+                        <a href="#">Stuffs</a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span><i class="fas fa-users"></i></span>
-                            <span>Members</span>
-                        </a>
+                        <a href="#">Members</a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span><i class="fas fa-user"></i></span>
-                            <span>Profile</span>
-                        </a>
+                    <li class="active">
+                        <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false">Profile</a>
+                        <ul class="collapse list-unstyled" id="profileSubmenu">
+                            <li><a href="#">Edit Profile</a></li>
+                            <li><a href="#">Change Password</a></li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
-        </div>
 
-        <div class="main-content">
-            <div class="title">
-                <?php
-                   echo $this->title();
-                ?>
-            </div>
+            <!-- Page Content Holder -->
+            <div id="content">
 
-            <div class="main">
-                <div class="widget">
-                    <div class="title">
-                        <?php
-                        echo $this->title();
-                        echo $this->content();
-                        ?>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
 
+                        <div class="navbar-header">
 
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="chart"></div>
-                </div>
+                </nav>
             </div>
         </div>
 
-        <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/bootstrap.js"></script>
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>
         </body>
         </html>
+
 
         <?php
     }
 }
+
 ?>
