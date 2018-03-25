@@ -272,3 +272,7 @@ body {
     color: #617085;
     font-weight: 600;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
