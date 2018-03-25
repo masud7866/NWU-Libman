@@ -6,7 +6,15 @@
  * Time: 10:58 PM
  */
 ?>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NWU-Libman</title>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../assets/font-awesome/css/fontawesome-all.min.css"/>
+</head>
+<body>
 
 <div class="container">
     <div class="panel panel-default">
@@ -32,3 +40,8 @@
         </div>
     </div>
 </div>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.js"></script>
+</body>
+</html>
