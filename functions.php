@@ -80,7 +80,35 @@ class db{
         return $tmp;
     }
 
-   function generateRandomString($length = 4) {
+    function remove_from_stock($book_id, $tags){
+        $tmp = false;
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        for($i=0;$i<count($tags);$i++)
+        {
+            $random = $this->generateRandomString();
+            $sql = "DELETE FROM books_meta WHERE book_id = '$book_id' AND meta_value = '$tags[$i]'";
+            $result = $conn->query($sql);
+            if ($result==true)
+            {
+                $tmp = true;
+            }
+            else{
+                $tmp = false;
+            }
+
+        }
+        $conn->close();
+        echo $tmp;
+        return $tmp;
+    }
+
+   function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -94,4 +122,4 @@ class db{
 
 $check = new db();
 //$check->get_all_books();
-$check->add_to_stock('17',4);
+$check->remove_from_stock('17',array('A6VG','Zetd'));
