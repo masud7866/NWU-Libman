@@ -263,21 +263,38 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-        $sql = "INSERT INTO borrowings (book_id, member_id, book_tag, due_by, status) VALUES ('$book_id','$member_id','$book_tag','$due_by',1)";
-        $result = $conn->query($sql);
-        if (mysqli_affected_rows($conn)>0)
-        {
-            $sql = "DELETE FROM books_meta WHERE meta_value = $book_tag";
+        if($this->is_book_available($book_id,$book_tag)!= null) {
+            $sql = "INSERT INTO borrowings (book_id, member_id, book_tag, due_by, status) VALUES ('$book_id','$member_id','$book_tag','$due_by',1)";
             $result = $conn->query($sql);
-            $tmp = true;
+            if (mysqli_affected_rows($conn) > 0) {
+                $sql = "DELETE FROM books_meta WHERE meta_value = '$book_tag'";
+                $result = $conn->query($sql);
+                $tmp = true;
+            } else {
+                $tmp = false;
+            }
+            $conn->close();
+            var_dump($sql);
+            var_dump($tmp);
+            return $tmp;
         }
-        else{
-            $tmp = false;
+        else {
+            return false;
         }
+    }
+
+    function is_book_available($book_id, $book_tag){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT id FROM books_meta WHERE book_id = '$book_id' AND meta_value = '$book_tag'";
+        $result = $conn->query($sql);
         $conn->close();
-        var_dump($sql);
-        var_dump($tmp);
-        return $tmp;
+        return $result->fetch_assoc();
     }
 
     public function check_login($email,$password,$type){
@@ -333,4 +350,5 @@ $check = new db();
 //$check->remove_member("9");
 //$check->add_manager_staff("Masud","example@ex.com","1234","staff");
 //$check->remove_manager_staff("1", "manager");
-$check->loan_book("20","1","EBUKW8Ay","2018-03-30");
+$check->loan_book("20","1","DAQ1J0yZ","2018-03-30");
+//$check->is_book_available("20","DAQ1J");
