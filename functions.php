@@ -154,7 +154,7 @@ class db{
             $tmp = false;
         }
         $conn->close();
-        var_dump($tmp);
+
         return $tmp;
     }
 
@@ -181,7 +181,7 @@ class db{
         return $tmp;
     }
 
-    public function add_manager_staff($name, $email, $phone, $type, $id, $join_date){
+    public function add_manager_staff($name, $email, $password, $type){
         $tmp = false;
 
         // Create connection
@@ -191,23 +191,33 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-        $sql = "INSERT INTO members (name, email, phone, type) VALUES ('$name', '$email', '$phone', '$type')";
-        $result = $conn->query($sql);
-        if ($result === TRUE) {
-            $last_id = $conn->insert_id;
-            //Insert Author
-            $sql = "INSERT INTO members_meta (member_id, meta_key, meta_value) VALUES ('$last_id', 'id', '$id')";
+        if($type=="staff"){
+            $sql = "INSERT INTO staffs (name, email, password, active) VALUES ('$name', '$email', '$password', 1)";
             $result = $conn->query($sql);
-            $sql = "INSERT INTO members_meta (member_id, meta_key, meta_value) VALUES ('$last_id', 'joined', '$join_date')";
-            $result = $conn->query($sql);
-            $tmp = true;
+            if ($result === TRUE) {
+
+                $tmp = true;
+            }
+            else {
+                $tmp = false;
+            }
+            $conn->close();
+            var_dump($tmp);
+            return $tmp;
         }
         else {
-            $tmp = false;
+            $sql = "INSERT INTO managers (name, email, password, active) VALUES ('$name', '$email', '$password', 1)";
+            $result = $conn->query($sql);
+            if ($result === TRUE) {
+
+                $tmp = true;
+            } else {
+                $tmp = false;
+            }
+            $conn->close();
+            var_dump($tmp);
+            return $tmp;
         }
-        $conn->close();
-        var_dump($tmp);
-        return $tmp;
     }
 
    function generateRandomString($length = 8) {
@@ -230,3 +240,4 @@ $check = new db();
 //$check->insert_books("Pathshala","3rd","bangla", array("jelly"),20);
 //$check->add_members("Lal mia","lal@red.com","01791225515","student","20161003010","22 MAR 18");
 //$check->remove_member("9");
+$check->add_manager_staff("Masud","example@ex.com","1234","staff");
