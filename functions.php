@@ -61,6 +61,7 @@ class db{
     }
 
     function add_to_stock($book_id, $count){
+        $tmp = false;
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
 
@@ -73,8 +74,10 @@ class db{
             $random = $this->generateRandomString();
             $sql = "INSERT INTO books_meta (book_id, meta_key, meta_value) VALUES ('$book_id', 'tag', '$random')";
             $result = $conn->query($sql);
+            $tmp = true;
         }
         $conn->close();
+        return $tmp;
     }
 
    function generateRandomString($length = 4) {
