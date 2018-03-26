@@ -264,7 +264,7 @@ class db{
             return false;
         }
         if($this->is_book_available($book_id,$book_tag)!= null) {
-            $sql = "INSERT INTO borrowings (book_id, member_id, book_tag, due_by, status) VALUES ('$book_id','$member_id','$book_tag','$due_by',1)";
+            $sql = "INSERT INTO borrowings (book_id, member_id, book_tag, due_by, status) VALUES ('$book_id','$member_id','$book_tag','$due_by',0)";
             $result = $conn->query($sql);
             if (mysqli_affected_rows($conn) > 0) {
                 $sql = "DELETE FROM books_meta WHERE meta_value = '$book_tag'";
@@ -274,11 +274,21 @@ class db{
                 $tmp = false;
             }
             $conn->close();
-            var_dump($sql);
-            var_dump($tmp);
             return $tmp;
         }
         else {
+            return false;
+        }
+    }
+
+    public function retrieve_book($book_id,$book_tag){
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
             return false;
         }
     }
@@ -294,6 +304,23 @@ class db{
         $sql = "SELECT id FROM books_meta WHERE book_id = '$book_id' AND meta_value = '$book_tag'";
         $result = $conn->query($sql);
         $conn->close();
+        return $result->fetch_assoc();
+    }
+
+    function is_book_borrowed($book_id, $book_tag){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT id FROM borrowings WHERE book_id = '$book_id' AND book_tag = '$book_tag' AND status = 0";
+        $result = $conn->query($sql);
+        $conn->close();
+        var_dump($result);
+        var_dump($sql);
+        var_dump($result->fetch_assoc());
         return $result->fetch_assoc();
     }
 
@@ -350,5 +377,6 @@ $check = new db();
 //$check->remove_member("9");
 //$check->add_manager_staff("Masud","example@ex.com","1234","staff");
 //$check->remove_manager_staff("1", "manager");
-$check->loan_book("20","1","DAQ1J0yZ","2018-03-30");
+//$check->loan_book("20","1","DAQ1J0yZ","2018-03-30");
 //$check->is_book_available("20","DAQ1J");
+$check->is_book_borrowed("20","DAQ1J0yZ");
