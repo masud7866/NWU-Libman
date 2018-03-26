@@ -71,7 +71,7 @@ class db{
         }
         $sql = "DELETE FROM books WHERE id= $book_id";
         $result = $conn->query($sql);
-        if ($result==true)
+        if (mysqli_affected_rows($conn)>0)
         {
             $tmp = true;
         }
@@ -116,7 +116,7 @@ class db{
             $random = $this->generateRandomString();
             $sql = "DELETE FROM books_meta WHERE book_id = '$book_id' AND meta_value = '$tags[$i]'";
             $result = $conn->query($sql);
-            if ($result==true)
+            if (mysqli_affected_rows($conn)>0)
             {
                 $tmp = true;
             }
@@ -154,7 +154,30 @@ class db{
             $tmp = false;
         }
         $conn->close();
-        echo "I am active";
+        var_dump($tmp);
+        return $tmp;
+    }
+
+    public function remove_member($member_id){
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "DELETE FROM members WHERE id= $member_id";
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn)>0)
+        {
+            $tmp = true;
+        }
+        else{
+            $tmp = false;
+        }
+        $conn->close();
         return $tmp;
     }
 
@@ -173,4 +196,8 @@ class db{
 $check = new db();
 //$check->get_all_books();
 //$check->remove_from_stock('17',array('A6VG','Zetd'));
-$check->add_members("Lal mia","lal@red.com","01791225515","studet","20161003010","22-01-18");
+//$check->delete_book("19");
+//check->remove_from_stock("20", array('BCKKWMdF', 'EkKJ94xa'));
+//$check->insert_books("Pathshala","3rd","bangla", array("jelly"),20);
+//$check->add_members("Lal mia","lal@red.com","01791225515","student","20161003010","22 MAR 18");
+$check->remove_member("9");
