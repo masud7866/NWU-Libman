@@ -291,6 +291,19 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
+        if ($this->is_book_borrowed($book_id,$book_tag)!=null){
+            $sql = "UPDATE borrowings SET status = 1 WHERE book_id = $book_id AND book_tag = '$book_tag'";
+            $result = $conn->query($sql);
+            if (mysqli_affected_rows($conn) > 0) {
+                $sql = "INSERT INTO books_meta (book_id, meta_key, meta_value) VALUES ('$book_id','tag','$book_tag')";
+                $result = $conn->query($sql);
+                $tmp = true;
+            } else {
+                $tmp = false;
+            }
+            $conn->close();
+            return $tmp;
+        }
     }
 
     function is_book_available($book_id, $book_tag){
@@ -318,9 +331,6 @@ class db{
         $sql = "SELECT id FROM borrowings WHERE book_id = '$book_id' AND book_tag = '$book_tag' AND status = 0";
         $result = $conn->query($sql);
         $conn->close();
-        var_dump($result);
-        var_dump($sql);
-        var_dump($result->fetch_assoc());
         return $result->fetch_assoc();
     }
 
@@ -379,4 +389,5 @@ $check = new db();
 //$check->remove_manager_staff("1", "manager");
 //$check->loan_book("20","1","DAQ1J0yZ","2018-03-30");
 //$check->is_book_available("20","DAQ1J");
-$check->is_book_borrowed("20","DAQ1J0yZ");
+//$check->is_book_borrowed("20","DAQ1J0yZ");
+//$check->retrieve_book("20","DAQ1J0yZ");
