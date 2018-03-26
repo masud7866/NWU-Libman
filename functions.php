@@ -275,4 +275,4 @@ $check = new db();
 //$check->add_members("Lal mia","lal@red.com","01791225515","student","20161003010","22 MAR 18");
 //$check->remove_member("9");
 //$check->add_manager_staff("Masud","example@ex.com","1234","staff");
-$check->remove_manager_staff("1", "manager");
+//$check->remove_manager_staff("1", "manager");
