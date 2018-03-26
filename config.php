@@ -9,6 +9,7 @@
 
 //Include this file where ever you need these constants
 define ('APPNAME',"NWU Libman");
+define ('APP_URL',"libman.lc");
 define ('DATABASE_HOST',"localhost");
 define ('DATABASE_USER',"root");
 define ('DATABASE_PASS',"7866");    /*USE YOUR DATABASE USER PASSWORD */
