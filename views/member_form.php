@@ -48,16 +48,14 @@ class member_form extends template
                         <label for="type">Type</label>
                         <br>
                         <label class="radio-inline">
-                            <input type="radio" id="type" name="type">Student
+                            <input type="radio" id="type" name="type" required="">Student
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" id="type" name="type">Teacher
+                            <input type="radio" id="type" name="type" required="">Teacher
                         </label>
-
                     </div>
                     <button type="submit" name="add_member" class="btn bg-success">Add Member</button>
                 </form>
-
             </div>
         </div>
         <?php
@@ -65,10 +63,8 @@ class member_form extends template
 
 }
 
-
 $t = new member_form();
 
 $t->layout();
-
 
 ?>
