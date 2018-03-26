@@ -6,10 +6,11 @@
  * Time: 12:11 AM
  */
 
-include "../templates/main.template.php";
+namespace app\views;
 
+use app\templates;
 
-class dashboard extends template{
+class dashboard extends templates\main_template {
     public function title()
     {
         ?>
@@ -26,11 +27,5 @@ class dashboard extends template{
 <?php
     }
 }
-
-
-$t = new dashboard();
-
-$t->layout();
-
 
 ?>

@@ -6,11 +6,10 @@
  * Time: 12:11 AM
  */
 
-include "../templates/main.template.php";
+use app\templates;
 
+class books_add extends templates\main_template {
 
-class books_add extends template
-{
     public function title()
     {
         ?>

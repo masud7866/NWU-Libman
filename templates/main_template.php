@@ -14,8 +14,9 @@
  *
  */
 
+namespace app\templates;
 
-class template
+class main_template
 {
     function layout()
     {
@@ -39,7 +40,7 @@ class template
             <!-- Bootstrap CSS CDN -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <!-- Our Custom CSS -->
-            <link rel="stylesheet" href="../assets/css/main.css">
+            <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/main.css">
         </head>
         <body>
 

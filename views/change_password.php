@@ -6,11 +6,10 @@
  * Time: 12:42 PM
  */
 
-include "../templates/main.template.php";
+include "../templates/main_template.php";
+use app\templates;
 
-
-class change_password extends template
-{
+class change_password extends templates\main_template {
     public function title()
     {
         ?>

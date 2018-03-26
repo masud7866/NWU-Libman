@@ -6,11 +6,11 @@
  * Time: 12:53 PM
  */
 
-include "../templates/main.template.php";
+include "../templates/main_template.php";
 
+use app\templates;
 
-class staff_form extends template
-{
+class staff_add extends templates\main_template {
     public function title()
     {
         ?>
@@ -58,11 +58,6 @@ class staff_form extends template
     }
 
 }
-
-
-$t = new staff_form();
-
-$t->layout();
 
 
 ?>

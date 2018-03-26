@@ -5,7 +5,12 @@
  * Date: 3/17/2018
  * Time: 10:58 PM
  */
+namespace app\views;
+class login{
+
+    public function layout(){
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,3 +50,8 @@
 <script src="../assets/js/bootstrap.js"></script>
 </body>
 </html>
+
+<?php
+    }
+}
+?>

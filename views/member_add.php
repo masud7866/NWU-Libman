@@ -6,11 +6,11 @@
  * Time: 12:53 PM
  */
 
-include "../templates/main.template.php";
+include "../templates/main_template.php";
 
+use app\templates;
 
-class member_form extends template
-{
+class member_add extends templates\main_template {
     public function title()
     {
         ?>
@@ -63,8 +63,5 @@ class member_form extends template
 
 }
 
-$t = new member_form();
-
-$t->layout();
 
 ?>
