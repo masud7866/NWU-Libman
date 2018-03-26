@@ -280,6 +280,37 @@ class db{
         return $tmp;
     }
 
+    public function check_login($email,$password,$type){
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+            if ($type=="manager")
+            {
+                $sql = "SELECT * FROM `managers` WHERE `email` = '$email' AND `password` = MD5('$password')";
+            }
+            else
+            {
+                $sql = "SELECT * FROM `staffs` WHERE `email` = '$email' AND `password` = MD5('$password')";
+            }
+            $result = $conn->query($sql);
+
+            if($result->fetch_assoc() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+    }
+
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

@@ -11,8 +11,6 @@ namespace app;
 use app\views\dashboard;
 use app\views\login;
 
-ini_set('display_errors', 1);
-
 error_reporting(E_ALL);
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
@@ -71,7 +69,7 @@ $klein->with('/manager', function () use ($klein) {
             return 'view all books';
         });
         $klein->respond('GET', '/add', function ($request, $response) {
-            include 'views/books_add.php';
+            return 'Add managers';
         });
     });
 

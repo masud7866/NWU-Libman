@@ -32,10 +32,10 @@ class main_template
             <title>
                 <?php
                 if (method_exists($this, 'title')) {
-                    echo $this->title();
+                    echo $this->title() . ' - ' . APPNAME;
                 }
                 ?>
-                -NWU-Libman</title>
+                </title>
 
             <!-- Bootstrap CSS CDN -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

@@ -11,8 +11,8 @@
 define ('APPNAME',"NWU Libman");
 define ('APP_URL',"http://libman.lc");
 define ('DATABASE_HOST',"localhost");
-define ('DATABASE_USER',"root");
-define ('DATABASE_PASS',"7866");    /*USE YOUR DATABASE USER PASSWORD */
+define ('DATABASE_USER',"nwu_libman");
+define ('DATABASE_PASS',"tC6o7ZqjOsgI0elX");    /*USE YOUR DATABASE USER PASSWORD */
 define ('DATABASE_DB',"nwu_libman");
 
 
