@@ -181,6 +181,35 @@ class db{
         return $tmp;
     }
 
+    public function add_manager_staff($name, $email, $phone, $type, $id, $join_date){
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "INSERT INTO members (name, email, phone, type) VALUES ('$name', '$email', '$phone', '$type')";
+        $result = $conn->query($sql);
+        if ($result === TRUE) {
+            $last_id = $conn->insert_id;
+            //Insert Author
+            $sql = "INSERT INTO members_meta (member_id, meta_key, meta_value) VALUES ('$last_id', 'id', '$id')";
+            $result = $conn->query($sql);
+            $sql = "INSERT INTO members_meta (member_id, meta_key, meta_value) VALUES ('$last_id', 'joined', '$join_date')";
+            $result = $conn->query($sql);
+            $tmp = true;
+        }
+        else {
+            $tmp = false;
+        }
+        $conn->close();
+        var_dump($tmp);
+        return $tmp;
+    }
+
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -200,4 +229,4 @@ $check = new db();
 //check->remove_from_stock("20", array('BCKKWMdF', 'EkKJ94xa'));
 //$check->insert_books("Pathshala","3rd","bangla", array("jelly"),20);
 //$check->add_members("Lal mia","lal@red.com","01791225515","student","20161003010","22 MAR 18");
-$check->remove_member("9");
+//$check->remove_member("9");
