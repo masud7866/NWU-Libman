@@ -59,8 +59,30 @@ class db{
 
         return $tmp;
     }
+    public function delete_book($book_id){
+        $tmp = false;
 
-    function add_to_stock($book_id, $count){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "DELETE FROM books WHERE id= $book_id";
+        $result = $conn->query($sql);
+        if ($result==true)
+        {
+            $tmp = true;
+        }
+        else{
+            $tmp = false;
+        }
+        $conn->close();
+        return $tmp;
+    }
+
+    public function add_to_stock($book_id, $count){
         $tmp = false;
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -80,7 +102,7 @@ class db{
         return $tmp;
     }
 
-    function remove_from_stock($book_id, $tags){
+    public function remove_from_stock($book_id, $tags){
         $tmp = false;
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -104,7 +126,6 @@ class db{
 
         }
         $conn->close();
-        echo $tmp;
         return $tmp;
     }
 
