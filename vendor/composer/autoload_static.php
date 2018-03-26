@@ -6,17 +6,55 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit7dc3e4d58be6551363abda06b5dc9816
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Translation\\' => 30,
+        ),
         'K' => 
         array (
             'Klein\\' => 6,
         ),
+        'D' => 
+        array (
+            'Delight\\Http\\' => 13,
+            'Delight\\Cookie\\' => 15,
+        ),
+        'C' => 
+        array (
+            'Carbon\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
         'Klein\\' => 
         array (
             0 => __DIR__ . '/..' . '/klein/klein/src/Klein',
+        ),
+        'Delight\\Http\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/delight-im/http/src',
+        ),
+        'Delight\\Cookie\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/delight-im/cookie/src',
+        ),
+        'Carbon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
     );
 

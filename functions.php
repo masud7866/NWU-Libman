@@ -352,7 +352,6 @@ class db{
             {
                 return false;
             }
-
     }
 
    function generateRandomString($length = 8) {
@@ -364,7 +363,22 @@ class db{
         }
         return $randomString;
     }
+}
 
+class authenticator{
+    public function __construct()
+    {
+        $this->db = new db();
+    }
+    public function authenicate()
+    {
+        \Delight\Cookie\Cookie::setcookie("phpsesid","",time() + 3600,'/');
+    }
+
+    public function isAuthenicated()
+    {
+
+    }
 }
 
 $check = new db();
