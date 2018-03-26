@@ -154,7 +154,7 @@ class db{
             $tmp = false;
         }
         $conn->close();
-
+        echo "I am active";
         return $tmp;
     }
 

@@ -27,6 +27,9 @@ $klein->respond('GET','/login',function ($request, $response) {
     include 'views/login.php';
 });
 
+$klein->respond('GET','/test',function ($request, $response) {
+    include  'functions.php';
+});
 
 /*     Routing End         */
 
