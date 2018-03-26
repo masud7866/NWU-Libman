@@ -218,6 +218,42 @@ class db{
         }
     }
 
+    public function remove_manager_staff($manager_staff_id, $type){
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        if($type=="staff"){
+            $sql = "DELETE FROM staffs WHERE id= $manager_staff_id";
+            $result = $conn->query($sql);
+            if (mysqli_affected_rows($conn)>0)
+            {
+                $tmp = true;
+            }
+            else{
+                $tmp = false;
+            }
+            $conn->close();
+            return $tmp;
+        }
+        else {
+            $sql = "DELETE FROM managers WHERE id= $manager_staff_id";
+            $result = $conn->query($sql);
+            if (mysqli_affected_rows($conn) > 0) {
+                $tmp = true;
+            } else {
+                $tmp = false;
+            }
+            $conn->close();
+            return $tmp;
+        }
+    }
+
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -238,4 +274,5 @@ $check = new db();
 //$check->insert_books("Pathshala","3rd","bangla", array("jelly"),20);
 //$check->add_members("Lal mia","lal@red.com","01791225515","student","20161003010","22 MAR 18");
 //$check->remove_member("9");
-$check->add_manager_staff("Masud","example@ex.com","1234","staff");
+//$check->add_manager_staff("Masud","example@ex.com","1234","staff");
+$check->remove_manager_staff("1", "manager");
