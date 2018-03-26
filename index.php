@@ -6,7 +6,7 @@
  * Time: 10:58 PM
  */
 
-include 'views/dashboard.php';
+
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
 require 'config.php';
 
