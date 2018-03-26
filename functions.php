@@ -253,6 +253,32 @@ class db{
             return $tmp;
         }
     }
+    public function loan_book($book_id, $member_id, $book_tag, $due_by){
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "INSERT INTO borrowings (book_id, member_id, book_tag, due_by, status) VALUES ('$book_id','$member_id','$book_tag','$due_by',1)";
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn)>0)
+        {
+            $sql = "DELETE FROM books_meta WHERE meta_value = $book_tag";
+            $result = $conn->query($sql);
+            $tmp = true;
+        }
+        else{
+            $tmp = false;
+        }
+        $conn->close();
+        var_dump($sql);
+        var_dump($tmp);
+        return $tmp;
+    }
 
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -276,3 +302,4 @@ $check = new db();
 //$check->remove_member("9");
 //$check->add_manager_staff("Masud","example@ex.com","1234","staff");
 //$check->remove_manager_staff("1", "manager");
+$check->loan_book("20","1","EBUKW8Ay","2018-03-30");
