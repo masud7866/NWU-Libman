@@ -202,7 +202,6 @@ class db{
                 $tmp = false;
             }
             $conn->close();
-            var_dump($tmp);
             return $tmp;
         }
         else {
@@ -215,7 +214,6 @@ class db{
                 $tmp = false;
             }
             $conn->close();
-            var_dump($tmp);
             return $tmp;
         }
     }
