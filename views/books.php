@@ -5,6 +5,7 @@
  * Date: 3/27/2018
  * Time: 7:14 PM
  */
+
 namespace app\views;
 
 use app\templates;
@@ -504,46 +505,111 @@ class books extends templates\main_template
                 </tfoot>
             </table>
 
-            <div class="miniinfo">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" class="form-control" required=""
-                               placeholder="Book Title..."/>
-                    </div>
-                    <div class="form-group">
-                        <label for="edition">Edition</label>
-                        <input type="text" id="edition" name="edition" class="form-control" required=""
-                               placeholder="Book Edition..."/>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required=""
-                               placeholder="Subject..."/>
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" id="author" name="author" class="form-control" required=""
-                               placeholder="Author Name..."/>
-                    </div>
-                    <div class="form-group">
-                        <label for="stock">Stock</label>
-                        <input type="number" id="stock" name="stock" class="form-control" required=""
-                               placeholder="Stocks..."/>
-                    </div>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Info
+            </button>
 
-                </form>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-                <div class="form-inline" align="center">
-                    <button type="button" class="btn btn-success">View</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-info">Update</button>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Books Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                <form action="" method="post">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" id="title" name="title" class="form-control" required=""
+                                               placeholder="Book Title..."/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edition">Edition</label>
+                                        <input type="text" id="edition" name="edition" class="form-control" required=""
+                                               placeholder="Book Edition..."/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" id="subject" name="subject" class="form-control" required=""
+                                               placeholder="Subject..."/>
+                                    </div>
+                                </form>
+
+                                    <div class="col-lg-6">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th class="info">Author</th>
+                                                <th colspan="2" class="info">Action</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>John</td>
+                                                <td><button type="button" class="btn btn-info">Edit</button></td>
+                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mary</td>
+                                                <td><button type="button" class="btn btn-info">Edit</button></td>
+                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>July</td>
+                                                <td><button type="button" class="btn btn-info">Edit</button></td>
+                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th class="info">Tag</th>
+                                            <th colspan="2" class="info">Action</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>zxc123</td>
+                                            <td><button type="button" class="btn btn-info">Edit</button></td>
+                                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>zxc456</td>
+                                            <td><button type="button" class="btn btn-info">Edit</button></td>
+                                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>zxc789</td>
+                                            <td><button type="button" class="btn btn-info">Edit</button></td>
+                                            <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
 
-
-
+        </div>
+        </div>
         </div>
         <?php
     }
