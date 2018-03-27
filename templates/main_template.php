@@ -76,6 +76,10 @@ class main_template
                     ?>
                     <ul class="list-unstyled components">
                         <li>
+                            <a href="" >Dashboard</a>
+                        </li>
+
+                        <li>
                             <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
                             <ul class="collapse list-unstyled" id="bookSubmenu">
                                 <li><a href="<?php echo APP_URL . "/manager/books/add" ?>">Add Books</a></li>
