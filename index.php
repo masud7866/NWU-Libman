@@ -15,6 +15,7 @@ use app\views\book_view;
 use app\views\books;
 use app\views\books_add;
 use app\views\dashboard;
+use app\views\edit_profile;
 use app\views\login;
 use app\views\manager_add;
 use app\views\member_add;
@@ -187,9 +188,15 @@ $klein->with('/manager', function () use ($klein) {
     });
 
     $klein->with('/profiles', function () use ($klein) {
+        $klein->respond('GET', '/edit', function ($request, $response) {
+            require 'views/edit_profile.php';
+            (new edit_profile())->layout();
+        });
 
     });
 });
+
+
 
 /*     Routing End         */
 
