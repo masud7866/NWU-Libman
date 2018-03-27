@@ -58,10 +58,4 @@ class books_add extends templates\main_template {
 
 }
 
-
-$t = new books_add();
-
-$t->layout();
-
-
 ?>
