@@ -503,6 +503,47 @@ class books extends templates\main_template
                 </tr>
                 </tfoot>
             </table>
+
+            <div class="miniinfo">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" required=""
+                               placeholder="Book Title..."/>
+                    </div>
+                    <div class="form-group">
+                        <label for="edition">Edition</label>
+                        <input type="text" id="edition" name="edition" class="form-control" required=""
+                               placeholder="Book Edition..."/>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required=""
+                               placeholder="Subject..."/>
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" class="form-control" required=""
+                               placeholder="Author Name..."/>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" name="stock" class="form-control" required=""
+                               placeholder="Stocks..."/>
+                    </div>
+
+                </form>
+
+                <div class="form-inline" align="center">
+                    <button type="button" class="btn btn-success">View</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-info">Update</button>
+                </div>
+
+            </div>
+
+
+
         </div>
         <?php
     }
