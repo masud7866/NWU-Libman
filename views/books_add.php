@@ -31,7 +31,7 @@ class books_add extends templates\main_template {
                 </div>
                 <div class="form-group">
                     <label for="edition">Edition</label>
-                    <input type="text" id="edition" name="edition" class="form-control" required=""
+                    <input type="text" id="edition" name="edition" class="form-control"
                            placeholder="Book Edition..."/>
                 </div>
                 <div class="form-group">

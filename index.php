@@ -19,6 +19,7 @@ use app\views\login;
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
 require 'config.php';
 require 'templates/main_template.php';
+require 'functions.php';
 
 $klein = new \Klein\Klein();            //Initialize the Klein PHP Router object
 
@@ -65,8 +66,21 @@ $klein->with('/manager', function () use ($klein) {
             (new books_add())->layout();
         });
         $klein->respond('POST', '/add', function ($request, $response) {
-            require 'views/books_add.php';
-            (new books_add())->layout();
+            $title = $request->param('title');
+            $edition = $request->param('edition');
+            $subject = $request->param('subject');
+            $author = $request->param('author');
+            $stock = $request->param('stock');
+
+            if (strpos($author,",")==false){
+                $author = array($author);
+            }
+            else
+            {
+                $author=explode($author,",");
+            }
+            $db = new \db();
+            $db->insert_books($title,$edition,$subject,$author,$stock);
         });
     });
 

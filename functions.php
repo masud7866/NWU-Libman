@@ -6,7 +6,6 @@
  * Time: 7:15 PM
  */
 
-include "config.php";
 
 class db{
     public function get_all_books(){
