@@ -16,7 +16,7 @@ class login{
 <head>
     <title>NWU-Libman</title>
     <link rel="stylesheet" href="../assets/css/main.css"/>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../assets/font-awesome/css/fontawesome-all.min.css"/>
 </head>
 <body>
@@ -46,8 +46,8 @@ class login{
     </div>
 </div>
 
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
 
