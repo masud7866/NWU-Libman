@@ -114,7 +114,22 @@ $klein->with('/manager', function () use ($klein) {
         });
         $klein->respond('POST', '/add', function ($request, $response) {
             require 'views/staff_add.php';
+            $name = $request->param('name');
+            $email = $request->param('email');
+            $password = $request->param('password');
+            $db = new \db();
+            $res = $db->add_manager_staff($name,$email,$password,"staff");
+            $add_staff = (new staff_add());
+            if ($res)
+            {
+                $add_staff->err_msg = "<div class='bg-success'>The staff is successfully added</div>";
+            }
+            else
+            {
+                $add_staff->err_msg = "<div class='bg-danger'>The staff could not be added</div>";
+            }
 
+            $add_staff->layout();
         });
     });
 

@@ -11,6 +11,7 @@ namespace app\views;
 use app\templates;
 
 class staff_add extends templates\main_template {
+    public $err_msg = null;
     public function title()
     {
         ?>
@@ -23,6 +24,12 @@ class staff_add extends templates\main_template {
         ?>
         <div class="container">
             <div class="makeitcenter">
+                <?php
+                if ($this->err_msg !=null) {
+                    echo $this->err_msg;
+                }
+
+                ?>
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
