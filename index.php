@@ -17,6 +17,7 @@ use app\views\books_add;
 use app\views\dashboard;
 use app\views\login;
 use app\views\member_add;
+use app\views\staff_add;
 
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
@@ -104,7 +105,17 @@ $klein->with('/manager', function () use ($klein) {
     });
 
     $klein->with('/staffs', function () use ($klein) {
+        $klein->respond('GET', '/', function ($request, $response) {
+            return 'view all books';
+        });
+        $klein->respond('GET', '/add', function ($request, $response) {
+            require 'views/staff_add.php';
+            (new staff_add())->layout();
+        });
+        $klein->respond('POST', '/add', function ($request, $response) {
+            require 'views/staff_add.php';
 
+        });
     });
 
     $klein->with('/members', function () use ($klein) {

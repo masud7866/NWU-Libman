@@ -54,7 +54,7 @@ class books_add extends templates\main_template {
                 <div class="form-group">
                     <label for="stock">Stock</label>
                     <input type="number" id="stock" name="stock" class="form-control" required=""
-                           placeholder="Stocks..."/>
+                           placeholder="Add in Stock..."/>
                 </div>
                 <button type="submit" name="add_book" class="btn bg-success">Add Book</button>
             </form>

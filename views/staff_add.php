@@ -6,7 +6,7 @@
  * Time: 12:53 PM
  */
 
-include "../templates/main_template.php";
+namespace app\views;
 
 use app\templates;
 
@@ -25,31 +25,21 @@ class staff_add extends templates\main_template {
             <div class="makeitcenter">
                 <form action="" method="post">
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" class="form-control" required=""
-                               placeholder="Book Title..."/>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required=""
+                               placeholder="Enter Name..."/>
                     </div>
                     <div class="form-group">
-                        <label for="edition">Edition</label>
-                        <input type="text" id="edition" name="edition" class="form-control" required=""
-                               placeholder="Book Edition..."/>
+                        <label for="edition">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required=""
+                               placeholder="Enter Email Address..."/>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required=""
-                               placeholder="Subject..."/>
+                        <label for="subject">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required=""
+                               placeholder="Enter Password..."/>
                     </div>
-                    <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" id="author" name="author" class="form-control" required=""
-                               placeholder="Author Name..."/>
-                    </div>
-                    <div class="form-group">
-                        <label for="stock">Stock</label>
-                        <input type="number" id="stock" name="stock" class="form-control" required=""
-                               placeholder="Stocks..."/>
-                    </div>
-                    <button type="submit" name="add_book" class="btn bg-success">Add Book</button>
+                    <button type="submit" name="add_staff" class="btn bg-success">Add Staff</button>
                 </form>
 
             </div>
