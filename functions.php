@@ -5,7 +5,7 @@
  * Date: 23-Mar-18
  * Time: 7:15 PM
  */
-
+//include 'config.php';
 
 class db{
     public function get_all_books(){
@@ -19,8 +19,30 @@ class db{
         $sql = "SELECT * FROM books";
         $result = $conn->query($sql);
         $conn->close();
-        return $result->fetch_assoc();
+        return $result->fetch_all();
     }
+    public function get_books_meta($id,$meta_key=null){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        if($meta_key==null) {
+            $sql = "SELECT * FROM books_meta WHERE book_id='$id'";
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_all();
+        }
+        else{
+            $sql = "SELECT meta_value FROM books_meta WHERE book_id='$id' AND meta_key='$meta_key'";
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_all();
+        }
+    }
+
 
     public function insert_books($title, $edition, $subject, $author, $in_stock){
         $tmp = false;
@@ -410,13 +432,6 @@ class authenticator{
     }
 }
 
-class handle_posts{
-    public function add_book()
-    {
-
-    }
-
-}
 
 $check = new db();
 //$check->get_all_books();
@@ -432,3 +447,4 @@ $check = new db();
 //$check->is_book_available("20","DAQ1J");
 //$check->is_book_borrowed("20","DAQ1J0yZ");
 //$check->retrieve_book("20","DAQ1J0yZ");
+//$check->get_all_books();

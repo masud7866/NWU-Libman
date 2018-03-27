@@ -60,7 +60,10 @@ $klein->with('/manager', function () use ($klein) {
     $klein->with('/books', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
             require 'views/books.php';
-            (new books())->layout();
+            $db = new \db();
+            $books = (new books());
+            $books->db = $db;
+            $books->layout();
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/books_add.php';
@@ -79,7 +82,7 @@ $klein->with('/manager', function () use ($klein) {
             }
             else
             {
-                $author=explode($author,",");
+                $author=explode(",",$author);
             }
             $db = new \db();
             $res = $db->insert_books($title,$edition,$subject,$author,$stock);
