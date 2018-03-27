@@ -14,6 +14,7 @@ error_reporting(E_ALL);
 use app\views\book_view;
 use app\views\books;
 use app\views\books_add;
+use app\views\change_password;
 use app\views\dashboard;
 use app\views\edit_profile;
 use app\views\login;
@@ -195,7 +196,10 @@ $klein->with('/manager', function () use ($klein) {
             require 'views/edit_profile.php';
             (new edit_profile())->layout();
         });
-
+        $klein->respond('GET', '/cpw', function ($request, $response) {
+            require 'views/change_password.php';
+            (new change_password())->layout();
+        });
     });
 });
 

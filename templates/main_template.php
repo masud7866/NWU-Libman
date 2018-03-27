@@ -76,34 +76,42 @@ class main_template
                     ?>
                     <ul class="list-unstyled components">
                         <li>
-                            <a href="" >Dashboard</a>
+                            <a href="<?php echo APP_URL . "/manager/dashboard" ?>">Dashboard</a>
                         </li>
 
                         <li>
                             <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
                             <ul class="collapse list-unstyled" id="bookSubmenu">
                                 <li><a href="<?php echo APP_URL . "/manager/books/add" ?>">Add Books</a></li>
-                                <li><a href="#">View Books</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/books/" ?>">View Books</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#managerSubmenu" data-toggle="collapse" aria-expanded="false">Managers</a>
                             <ul class="collapse list-unstyled" id="managerSubmenu">
-                                <li><a href="#">Add Managers</a></li>
-                                <li><a href="#">Views</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/managers/add" ?>">Add Managers</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/managers/" ?>">View Managers</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Stuffs</a>
+                            <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false">Staffs</a>
+                            <ul class="collapse list-unstyled" id="staffSubmenu">
+                                <li><a href="<?php echo APP_URL . "/manager/staffs/add" ?>">Add Staffs</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/staffs/" ?>">View Managers</a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="#">Members</a>
+                            <a href="#memberSubmenu" data-toggle="collapse" aria-expanded="false">Members</a>
+                            <ul class="collapse list-unstyled" id="memberSubmenu">
+                                <li><a href="<?php echo APP_URL . "/manager/members/add" ?>">Add Members</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/members/" ?>">View Members</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false">Profile</a>
                             <ul class="collapse list-unstyled" id="profileSubmenu">
-                                <li><a href="#">Edit Profile</a></li>
-                                <li><a href="#">Change Password</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/profiles/edit" ?>">Edit Profile</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/profiles/cpw" ?>">Change Password</a></li>
                             </ul>
                         </li>
                     </ul>

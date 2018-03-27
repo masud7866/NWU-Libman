@@ -6,7 +6,7 @@
  * Time: 12:42 PM
  */
 
-include "../templates/main_template.php";
+namespace app\views;
 use app\templates;
 
 class change_password extends templates\main_template {
