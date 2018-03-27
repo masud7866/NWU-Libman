@@ -56,13 +56,6 @@ class main_template
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <div class="clock">
-                            <span id="hr">00</span>
-                            <span> : </span>
-                            <span id="min">00</span>
-                            <span> : </span>
-                            <span id="sec">00</span>
-                        </div>
                         <li class=""><a href="#">Sign Out
                     </ul>
                 </div>
@@ -136,46 +129,10 @@ class main_template
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+
+
         <script src="<?php APP_URL ?>/assets/js/main.js"></script>
-        <script>
-            var d, h, m, s, animate;
 
-            function init() {
-                d = new Date();
-                h = d.getHours();
-                m = d.getMinutes();
-                s = d.getSeconds();
-                clock();
-            };
-
-            function clock() {
-                s++;
-                if (s == 60) {
-                    s = 0;
-                    m++;
-                    if (m == 60) {
-                        m = 0;
-                        h++;
-                        if (h == 24) {
-                            h = 0;
-                        }
-                    }
-                }
-                $('sec', s);
-                $('min', m);
-                $('hr', h);
-                animate = setTimeout(clock, 1000);
-            };
-
-            function $(id, val) {
-                if (val < 10) {
-                    val = '0' + val;
-                }
-                document.getElementById(id).innerHTML = val;
-            };
-
-            window.onload = init;
-        </script>
         </body>
         </html>
         <?php

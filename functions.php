@@ -213,7 +213,7 @@ class db{
             return false;
         }
         if($type=="staff"){
-            $sql = "INSERT INTO staffs (name, email, password, active) VALUES ('$name', '$email', '$password', 1)";
+            $sql = "INSERT INTO staffs (name, email, password, active) VALUES ('$name', '$email', MD5('$password'), 1)";
             $result = $conn->query($sql);
             if ($result === TRUE) {
 
@@ -365,13 +365,13 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-            if ($type=="manager")
+            if ($type=="staff")
             {
-                $sql = "SELECT * FROM `managers` WHERE `email` = '$email' AND `password` = MD5('$password')";
+                $sql = "SELECT * FROM `staffs` WHERE `email` = '$email' AND `password` = MD5('$password')";
             }
             else
             {
-                $sql = "SELECT * FROM `staffs` WHERE `email` = '$email' AND `password` = MD5('$password')";
+                $sql = "SELECT * FROM `managers` WHERE `email` = '$email' AND `password` = MD5('$password')";
             }
             $result = $conn->query($sql);
 
@@ -385,13 +385,45 @@ class db{
             }
     }
 
-    public function login($uid)
+    public function insert_session($uid,$type,$code,$ua)
     {
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql = "INSERT INTO `sessions` (`id`, `user_id`, `type`, `code`, `user_agent`, `created_at`) VALUES (NULL, '$uid', '$type', '$code', '$ua', CURRENT_TIMESTAMP);";
+
+
+
 
     }
 
-    public function get_id_by_email()
+    public function get_id_by_email($email,$type)
     {
+        $tmp = false;
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        if($type="staff")
+        {
+            $sql = "SELECT * FROM `staffs` WHERE `email` = '$email' AND `password` = MD5('$password')";
+        }
+        else
+        {
+
+        }
+
 
     }
 
