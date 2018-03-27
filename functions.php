@@ -333,7 +333,7 @@ class db{
         return $result->fetch_assoc();
     }
 
-    public function check_login($email,$password,$type){
+    public function check_credentials($email,$password,$type){
         $tmp = false;
 
         // Create connection
@@ -363,6 +363,16 @@ class db{
             }
     }
 
+    public function login($uid)
+    {
+
+    }
+
+    public function get_id_by_email()
+    {
+
+    }
+
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -379,9 +389,19 @@ class authenticator{
     {
         $this->db = new db();
     }
-    public function authenicate()
+    public function authenicate($email,$pass,$type)
     {
-        \Delight\Cookie\Cookie::setcookie("phpsesid","",time() + 3600,'/');
+        $cookie = new \Delight\Cookie\Cookie('PHPSESID');
+        $cookie->setValue('31d4d96e407aad42');
+        $cookie->setMaxAge(60 * 60 * 24);
+// $cookie->setExpiryTime(time() + 60 * 60 * 24);
+        $cookie->setPath('/');
+        $cookie->setSameSiteRestriction('Strict');
+// echo $cookie;
+        $cookie->save();
+
+        var_dump(\Delight\Cookie\Cookie::exists('PHPSESID'));
+
     }
 
     public function isAuthenicated()

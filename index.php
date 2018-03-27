@@ -42,11 +42,6 @@ $klein->respond('GET', '/login', function ($request, $response) {
     (new login)->layout();
 });
 
-$klein->respond('GET', '/test', function ($request, $response) {
-    include 'functions.php';
-});
-
-
 $klein->with('/manager', function () use ($klein) {
 
     $klein->respond('GET', '/', function ($request, $response) {
