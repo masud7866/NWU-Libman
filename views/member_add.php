@@ -5,8 +5,7 @@
  * Date: 3/26/2018
  * Time: 12:53 PM
  */
-
-include "../templates/main_template.php";
+namespace app\views;
 
 use app\templates;
 

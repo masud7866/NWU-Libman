@@ -14,6 +14,7 @@ use app\views\books;
 use app\views\books_add;
 use app\views\dashboard;
 use app\views\login;
+use app\views\member_add;
 
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
@@ -110,7 +111,17 @@ $klein->with('/manager', function () use ($klein) {
     });
 
     $klein->with('/members', function () use ($klein) {
+        $klein->respond('GET', '/', function ($request, $response) {
+            return 'View all members page will be shown here';
+        });
+        $klein->respond('GET', '/add', function ($request, $response) {
+            require 'views/member_add.php';
+            (new member_add())->layout();
+        });
+        $klein->respond('POST', '/add', function ($request, $response) {
+            require 'views/member_add.php';
 
+        });
     });
 
     $klein->with('/profiles', function () use ($klein) {
