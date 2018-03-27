@@ -64,6 +64,10 @@ $klein->with('/manager', function () use ($klein) {
             require 'views/books_add.php';
             (new books_add())->layout();
         });
+        $klein->respond('POST', '/add', function ($request, $response) {
+            require 'views/books_add.php';
+            (new books_add())->layout();
+        });
     });
 
     $klein->with('/managers', function () use ($klein) {

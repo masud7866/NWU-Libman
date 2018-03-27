@@ -391,6 +391,14 @@ class authenticator{
     }
 }
 
+class handle_posts{
+    public function add_book()
+    {
+
+    }
+
+}
+
 $check = new db();
 //$check->get_all_books();
 //$check->remove_from_stock('17',array('A6VG','Zetd'));
