@@ -1,21 +1,20 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Minhaz Rahman
- * Date: 3/26/2018
- * Time: 12:53 PM
+ * User: masud
+ * Date: 27-Mar-18
+ * Time: 11:44 PM
  */
 
 namespace app\views;
-
 use app\templates;
 
-class staff_add extends templates\main_template {
+class manager_add extends templates\main_template {
     public $err_msg = null;
     public function title()
     {
         ?>
-        Add New Staff
+        Add New Manager
         <?php
     }
 
@@ -46,7 +45,7 @@ class staff_add extends templates\main_template {
                         <input type="password" id="password" name="password" class="form-control" required=""
                                placeholder="Enter Password..."/>
                     </div>
-                    <button type="submit" name="add_manager" class="btn bg-success">Add Manager</button>
+                    <button type="submit" name="add_staff" class="btn bg-success">Add Manager</button>
                 </form>
 
             </div>

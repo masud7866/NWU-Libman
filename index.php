@@ -16,6 +16,7 @@ use app\views\books;
 use app\views\books_add;
 use app\views\dashboard;
 use app\views\login;
+use app\views\manager_add;
 use app\views\member_add;
 use app\views\staff_add;
 
@@ -97,16 +98,36 @@ $klein->with('/manager', function () use ($klein) {
 
     $klein->with('/managers', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
-            return 'view all books';
+            return 'view all managers';
         });
         $klein->respond('GET', '/add', function ($request, $response) {
-            return 'Add managers';
+            require 'views/manager_add.php';
+            (new manager_add())->layout();
+        });
+        $klein->respond('POST', '/add', function ($request, $response) {
+            require 'views/manager_add.php';
+            $name = $request->param('name');
+            $email = $request->param('email');
+            $password = $request->param('password');
+            $db = new \db();
+            $res = $db->add_manager_staff($name,$email,$password,"manager");
+            $add_manager = (new manager_add());
+            if ($res)
+            {
+                $add_manager->err_msg = "<div class='bg-success'>The manager is successfully added</div>";
+            }
+            else
+            {
+                $add_manager->err_msg = "<div class='bg-danger'>The manager could not be added</div>";
+            }
+
+            $add_manager->layout();
         });
     });
 
     $klein->with('/staffs', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
-            return 'view all books';
+            return 'view all staffs';
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/staff_add.php';
