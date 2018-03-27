@@ -39,6 +39,8 @@ class main_template
 
             <!-- Bootstrap CSS CDN -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+            <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css">
             <!-- Our Custom CSS -->
             <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/main.css">
         </head>
@@ -78,7 +80,7 @@ class main_template
                         <li>
                             <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
                             <ul class="collapse list-unstyled" id="bookSubmenu">
-                                <li><a href="#">Add Books</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/books/add" ?>">Add Books</a></li>
                                 <li><a href="#">View Books</a></li>
                             </ul>
                         </li>
@@ -126,14 +128,9 @@ class main_template
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <!-- Bootstrap Js CDN -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
-            });
-        </script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+        <script src="<?php APP_URL ?>/assets/js/main.js"></script>
         </body>
         </html>
 

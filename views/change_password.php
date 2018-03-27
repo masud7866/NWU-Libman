@@ -48,10 +48,4 @@ class change_password extends templates\main_template {
 
 }
 
-
-$t = new change_password();
-
-$t->layout();
-
-
 ?>

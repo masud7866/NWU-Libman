@@ -59,5 +59,4 @@ class staff_add extends templates\main_template {
 
 }
 
-
 ?>

@@ -7,17 +7,18 @@ namespace app;
  * Time: 10:58 PM
  */
 
+ini_set("display_errors",1);
+error_reporting(E_ALL);
 
+use app\views\books;
+use app\views\books_add;
 use app\views\dashboard;
 use app\views\login;
 
-error_reporting(E_ALL);
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
 require 'config.php';
 require 'templates/main_template.php';
-
-
 
 $klein = new \Klein\Klein();            //Initialize the Klein PHP Router object
 
@@ -56,11 +57,12 @@ $klein->with('/manager', function () use ($klein) {
 
     $klein->with('/books', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
-            return 'view all books';
+            require 'views/books.php';
+            (new books())->layout();
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/books_add.php';
-            (new \books_add())->layout();
+            (new books_add())->layout();
         });
     });
 
