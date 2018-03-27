@@ -54,10 +54,10 @@ class member_add extends templates\main_template {
                         <label for="type">Type</label>
                         <br>
                         <label class="radio-inline">
-                            <input type="radio" id="type" name="type" required="">Student
+                            <input type="radio" id="type" name="type" value="student" required="">Student
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" id="type" name="type" required="">Teacher
+                            <input type="radio" id="type" name="type" value="teacher" required="">Teacher
                         </label>
                     </div>
                     <div class="form-group">
