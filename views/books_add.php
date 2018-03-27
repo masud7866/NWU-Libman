@@ -11,18 +11,25 @@ use app\templates;
 
 class books_add extends templates\main_template {
 
+    public $err_msg = null;
     public function title()
     {
         ?>
         Add Book
         <?php
     }
-
     public function content()
     {
         ?>
         <div class="container">
         <div class="makeitcenter">
+            <?php
+
+            if ($this->err_msg !=null) {
+                echo $this->err_msg;
+            }
+
+            ?>
             <form action="" method="post">
                 <div class="form-group">
                     <label for="title">Title</label>

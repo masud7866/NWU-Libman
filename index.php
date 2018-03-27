@@ -66,6 +66,7 @@ $klein->with('/manager', function () use ($klein) {
             (new books_add())->layout();
         });
         $klein->respond('POST', '/add', function ($request, $response) {
+            require 'views/books_add.php';
             $title = $request->param('title');
             $edition = $request->param('edition');
             $subject = $request->param('subject');
@@ -80,7 +81,18 @@ $klein->with('/manager', function () use ($klein) {
                 $author=explode($author,",");
             }
             $db = new \db();
-            $db->insert_books($title,$edition,$subject,$author,$stock);
+            $res = $db->insert_books($title,$edition,$subject,$author,$stock);
+            $add_book = (new books_add());
+            if ($res)
+            {
+                $add_book->err_msg = "<div class='bg-success'>The book is successfully added to the stock</div>";
+            }
+            else
+            {
+                $add_book->err_msg = "<div class='bg-danger'>The book could not be added</div>";
+            }
+
+            $add_book->layout();
         });
     });
 
