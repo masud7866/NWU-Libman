@@ -10,6 +10,7 @@ namespace app\views;
 use app\templates;
 
 class member_add extends templates\main_template {
+    public $err_msg = null;
     public function title()
     {
         ?>
@@ -22,6 +23,12 @@ class member_add extends templates\main_template {
         ?>
         <div class="container">
             <div class="makeitcenter">
+                <?php
+                if ($this->err_msg !=null) {
+                    echo $this->err_msg;
+                }
+
+                ?>
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="id">ID</label>
@@ -52,6 +59,11 @@ class member_add extends templates\main_template {
                         <label class="radio-inline">
                             <input type="radio" id="type" name="type" required="">Teacher
                         </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="join-date">Join Date</label>
+                        <input type="date" id="join-date" name="join-date" class="form-control" required=""
+                               placeholder="Enter Phone Number..."/>
                     </div>
                     <button type="submit" name="add_member" class="btn bg-success">Add Member</button>
                 </form>

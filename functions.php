@@ -142,7 +142,7 @@ class db{
         $result = $conn->query($sql);
         if ($result === TRUE) {
             $last_id = $conn->insert_id;
-            //Insert Author
+            //Insert ID, Join date
             $sql = "INSERT INTO members_meta (member_id, meta_key, meta_value) VALUES ('$last_id', 'id', '$id')";
             $result = $conn->query($sql);
             $sql = "INSERT INTO members_meta (member_id, meta_key, meta_value) VALUES ('$last_id', 'joined', '$join_date')";

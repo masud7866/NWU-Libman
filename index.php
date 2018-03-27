@@ -120,7 +120,25 @@ $klein->with('/manager', function () use ($klein) {
         });
         $klein->respond('POST', '/add', function ($request, $response) {
             require 'views/member_add.php';
+            $name = $request->param('name');
+            $email = $request->param('email');
+            $phone = $request->param('phone');
+            $type = $request->param('type');
+            $id = $request->param('id');
+            $join_date = $request->param('join-date');
+            $db = new \db();
+            $res = $db->add_members($name,$email,$phone,$type,$id,$join_date);
+            $add_member = (new member_add());
+            if ($res)
+            {
+                $add_member->err_msg = "<div class='bg-success'>The member is successfully added</div>";
+            }
+            else
+            {
+                $add_member->err_msg = "<div class='bg-danger'>The member could not be added</div>";
+            }
 
+            $add_member->layout();
         });
     });
 
