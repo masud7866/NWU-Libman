@@ -179,3 +179,7 @@ a.article, a.article:hover {
     max-width: 400px;
     padding: 10px;
 }
+.sqbox {
+    min-height: 100px;
+    background-color: #7187d2;
+}

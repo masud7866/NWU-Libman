@@ -56,10 +56,8 @@ class main_template
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Sign Out</a></li>
+
                     </ul>
                 </div>
             </div>
