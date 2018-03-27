@@ -1,4 +1,5 @@
 <?php
+
 namespace app;
 /**
  * Created by PhpStorm.
@@ -7,9 +8,10 @@ namespace app;
  * Time: 10:58 PM
  */
 
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
+use app\views\book_view;
 use app\views\books;
 use app\views\books_add;
 use app\views\dashboard;
@@ -26,22 +28,22 @@ $klein = new \Klein\Klein();            //Initialize the Klein PHP Router object
 
 
 $request = \Klein\Request::createFromGlobals();     //Get Global Blank Request
-$request->server()->set('REQUEST_URI', substr($_SERVER['REQUEST_URI'],  strlen("")));       //Set Request Path
+$request->server()->set('REQUEST_URI', substr($_SERVER['REQUEST_URI'], strlen("")));       //Set Request Path
 
 
 /*     Routing Start         */
 
-$klein->respond('GET','/',function ($request, $response) {
+$klein->respond('GET', '/', function ($request, $response) {
     $response->redirect("/login")->send();
 });
 
-$klein->respond('GET','/login',function ($request, $response) {
+$klein->respond('GET', '/login', function ($request, $response) {
     require 'views/login.php';
     (new login)->layout();
 });
 
-$klein->respond('GET','/test',function ($request, $response) {
-    include  'functions.php';
+$klein->respond('GET', '/test', function ($request, $response) {
+    include 'functions.php';
 });
 
 
@@ -130,7 +132,6 @@ $klein->with('/manager', function () use ($klein) {
 });
 
 /*     Routing End         */
-
 
 
 $klein->dispatch($request);     //Start the routing effect by dispatching request
