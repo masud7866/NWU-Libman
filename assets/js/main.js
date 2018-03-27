@@ -3,13 +3,13 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 
-    $('#example').DataTable( {
+    $('#example').DataTable({
         select: true,
-        columnDefs: [ {
+        columnDefs: [{
             orderable: false,
             className: 'select-checkbox',
-            targets:   0
-        } ],
-        order: [[ 1, 'asc' ]]
-    } );
+            targets: 0
+        }],
+        order: [[1, 'asc']]
+    });
 });

@@ -5,6 +5,7 @@
  * Date: 3/27/2018
  * Time: 7:14 PM
  */
+
 namespace app\views;
 
 use app\templates;
@@ -199,4 +200,5 @@ class books extends templates\main_template
 
     }
 }
+
 ?>

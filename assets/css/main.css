@@ -183,3 +183,18 @@ a.article, a.article:hover {
     min-height: 100px;
     background-color: #7187d2;
 }
+.clock{
+    text-align:center;
+    width:auto;
+    height:auto;
+}
+.dashstyle {
+    background: #7187d2;
+    min-height: 200px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.dashstyle h3{}
+.dashstyle h1 {
+    font-size: 65px;
+}
