@@ -25,6 +25,8 @@ use app\views\members;
 use app\views\staff_add;
 use app\views\staffs;
 use app\views\borrowings;
+use app\views\update_books;
+use app\views\update_member;
 
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
@@ -48,19 +50,13 @@ $klein->respond('GET', '/', function ($request, $response) {
 $klein->respond('GET', '/login', function ($request, $response) {
     $auth = new \authenticator();
     $isAuth = $auth->isAuthenicated();
-    if ($isAuth)
-    {
-        if($isAuth[2]=="staff")
-        {
+    if ($isAuth) {
+        if ($isAuth[2] == "staff") {
             $response->redirect("/staff/")->send();
-        }
-        else
-        {
+        } else {
             $response->redirect("/manager/")->send();
         }
-    }
-    else
-    {
+    } else {
 
         require 'views/login.php';
         (new login)->layout();
@@ -71,9 +67,8 @@ $klein->respond('GET', '/login', function ($request, $response) {
 $klein->respond('GET', '/logout', function ($request, $response) {
     $auth = new \authenticator();
     $isAuth = $auth->isAuthenicated();
-    if ($isAuth)
-    {
-      $auth->inAuth();
+    if ($isAuth) {
+        $auth->inAuth();
     }
 
     $response->redirect("/")->send();
@@ -89,19 +84,13 @@ $klein->respond('POST', '/login', function ($request, $response) {
     $pass = $request->param('password');
     $type = $request->param('type');
 
-    if($auth->authenicate($email,$pass,$type))
-    {
-            if($type=="staff")
-            {
-                $response->redirect("/staff/")->send();
-            }
-            else
-            {
-                $response->redirect("/manager/")->send();
-            }
-    }
-    else
-    {
+    if ($auth->authenicate($email, $pass, $type)) {
+        if ($type == "staff") {
+            $response->redirect("/staff/")->send();
+        } else {
+            $response->redirect("/manager/")->send();
+        }
+    } else {
         $login->err_msg = "<div class='bg-danger'>Invalid credentials</div>";
         $login->layout();
     }
@@ -109,11 +98,9 @@ $klein->respond('POST', '/login', function ($request, $response) {
 });
 
 $isAuth = $auth->isAuthenicated();
-if ($isAuth)
-{
-    if($isAuth[2]=="staff")
-    {
-        $klein->with('/staff', function () use ($klein){
+if ($isAuth) {
+    if ($isAuth[2] == "staff") {
+        $klein->with('/staff', function () use ($klein) {
             $klein->respond('GET', '/', function ($request, $response) {
                 $response->redirect("/staff/dashboard")->send();
             });
@@ -161,9 +148,7 @@ if ($isAuth)
                 });
             });
         });
-    }
-    else
-    {
+    } else {
         $klein->with('/manager', function () use ($klein) {
 
             $klein->respond('GET', '/', function ($request, $response) {
@@ -191,6 +176,12 @@ if ($isAuth)
                     require 'views/books_add.php';
                     (new books_add())->layout();
                 });
+
+                $klein->respond('GET', '/update', function ($request, $response) {
+                    require 'views/update_books.php';
+                    (new update_books())->layout();
+                });
+
                 $klein->respond('POST', '/add', function ($request, $response) {
                     require 'views/books_add.php';
                     $title = $request->param('title');
@@ -199,22 +190,17 @@ if ($isAuth)
                     $author = $request->param('author');
                     $stock = $request->param('stock');
 
-                    if (strpos($author,",")==false){
+                    if (strpos($author, ",") == false) {
                         $author = array($author);
-                    }
-                    else
-                    {
-                        $author=explode(",",$author);
+                    } else {
+                        $author = explode(",", $author);
                     }
                     $db = new \db();
-                    $res = $db->insert_books($title,$edition,$subject,$author,$stock);
+                    $res = $db->insert_books($title, $edition, $subject, $author, $stock);
                     $add_book = (new books_add());
-                    if ($res)
-                    {
+                    if ($res) {
                         $add_book->err_msg = "<div class='bg-success'>The book is successfully added to the stock</div>";
-                    }
-                    else
-                    {
+                    } else {
                         $add_book->err_msg = "<div class='bg-danger'>The book could not be added</div>";
                     }
 
@@ -240,14 +226,11 @@ if ($isAuth)
                     $email = $request->param('email');
                     $password = $request->param('password');
                     $db = new \db();
-                    $res = $db->add_manager_staff($name,$email,$password,"manager");
+                    $res = $db->add_manager_staff($name, $email, $password, "manager");
                     $add_manager = (new manager_add());
-                    if ($res)
-                    {
+                    if ($res) {
                         $add_manager->err_msg = "<div class='bg-success'>The manager is successfully added</div>";
-                    }
-                    else
-                    {
+                    } else {
                         $add_manager->err_msg = "<div class='bg-danger'>The manager could not be added</div>";
                     }
 
@@ -273,14 +256,11 @@ if ($isAuth)
                     $email = $request->param('email');
                     $password = $request->param('password');
                     $db = new \db();
-                    $res = $db->add_manager_staff($name,$email,$password,"staff");
+                    $res = $db->add_manager_staff($name, $email, $password, "staff");
                     $add_staff = (new staff_add());
-                    if ($res)
-                    {
+                    if ($res) {
                         $add_staff->err_msg = "<div class='bg-success'>The staff is successfully added</div>";
-                    }
-                    else
-                    {
+                    } else {
                         $add_staff->err_msg = "<div class='bg-danger'>The staff could not be added</div>";
                     }
 
@@ -300,6 +280,12 @@ if ($isAuth)
                     require 'views/member_add.php';
                     (new member_add())->layout();
                 });
+
+                $klein->respond('GET', '/update', function ($request, $response) {
+                    require 'views/update_member.php';
+                    (new update_member())->layout();
+                });
+
                 $klein->respond('POST', '/add', function ($request, $response) {
                     require 'views/member_add.php';
                     $name = $request->param('name');
@@ -309,14 +295,11 @@ if ($isAuth)
                     $id = $request->param('id');
                     $join_date = $request->param('join-date');
                     $db = new \db();
-                    $res = $db->add_members($name,$email,$phone,$type,$id,$join_date);
+                    $res = $db->add_members($name, $email, $phone, $type, $id, $join_date);
                     $add_member = (new member_add());
-                    if ($res)
-                    {
+                    if ($res) {
                         $add_member->err_msg = "<div class='bg-success'>The member is successfully added</div>";
-                    }
-                    else
-                    {
+                    } else {
                         $add_member->err_msg = "<div class='bg-danger'>The member could not be added</div>";
                     }
 
@@ -340,7 +323,6 @@ if ($isAuth)
 }
 
 
-
 $klein->onHttpError(function ($code, $router) {
     switch ($code) {
         case 404:
@@ -355,12 +337,10 @@ $klein->onHttpError(function ($code, $router) {
             break;
         default:
             $router->response()->body(
-                'Oh no, a bad error happened that caused a '. $code
+                'Oh no, a bad error happened that caused a ' . $code
             );
     }
 });
-
-
 
 
 /*     Routing End         */
