@@ -93,14 +93,16 @@ class db{
 
                 $status=$row["status"];
                 $book_title = $this->get_book_by_id($book_id)[1];
-                $member_name=$this->get_member_info_by_id($book_id,"name");
+                $member_name=$this->get_member_info_by_id($member_id,"name");
+                $edition = $this->get_book_by_id($book_id)[2];
+                $subject=$this->get_book_by_id($book_id)[3];
                 if($status==0){
                     $status="Borrowed";
                 }else{
                     $status="Returned";
                 }
 
-                $borrowingsarr=array("id" => $id,"books_title"=>$book_title,"member_name"=>$member_name,'authors'=>$authors,"book_tag"=>$book_tag,"due_by"=>$due_by,"status"=>$status);
+                $borrowingsarr=array("id" => $id,"subject"=>$subject,"edition"=>$edition,"books_title"=>$book_title,"member_name"=>$member_name,'authors'=>$authors,"book_tag"=>$book_tag,"due_by"=>$due_by,"status"=>$status);
 
                 array_push($temparr,$borrowingsarr);
 

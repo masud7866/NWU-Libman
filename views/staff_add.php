@@ -52,7 +52,7 @@ class staff_add extends templates\main_template {
                         <input type="password" id="password" name="password" class="form-control" required=""
                                placeholder="Enter Password..."/>
                     </div>
-                    <button type="submit" name="add_manager" class="btn bg-success">Add Manager</button>
+                    <button type="submit" name="add_manager" class="btn bg-success">Add Staff</button>
                 </form>
 
             </div>
