@@ -55,7 +55,7 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-        $sql = "SELECT meta_value FROM books_meta WHERE meta_key='tag'";
+        $sql = "SELECT meta_value,book_id FROM books_meta WHERE meta_key='tag'";
         $result = $conn->query($sql);
         $conn->close();
         return $result->fetch_all();

@@ -80,8 +80,9 @@ class loan_a_book extends templates\main_template
                         <?php
                         foreach ($db->get_all_tags() as $row)
                         {
+                            $book = $db->get_book_by_id($row[1]);
                             ?>
-                            <option data-tokens="<?php echo $row[0] ?>" name="book_tag" value="<?php echo $row[0] ?>"><?php echo $row[0] ?></option>
+                            <option data-tokens="<?php echo $row[0] ?>" name="book_tag" value="<?php echo $row[0] ?>"><?php echo $row[0] . " [" . $book[1] . " " . $book[2] . "edition ]"?></option>
                         <?php } ?>
 
                     </select>
