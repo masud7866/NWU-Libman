@@ -55,9 +55,15 @@ class main_template
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class=""><a href="#">Sign Out
-                    </ul>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button" data-toggle="dropdown">Hello Mr. XXX
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Change Password</a></li>
+                            <li><a href="#">Log Out</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -131,7 +137,6 @@ class main_template
 
             </div>
         </div>
-
 
         <!-- jQuery CDN -->
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
