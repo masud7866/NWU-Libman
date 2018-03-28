@@ -49,8 +49,8 @@ class login{
                                placeholder="Enter Your Password..."/>
                     </div>
                     <div class="form-group">
-                            <label class="radio-inline"><input type="radio" name="type" value="manager" checked>I am Manager</label>
-                            <label class="radio-inline"><input type="radio" name="type" value="staff">I am Staff</label>
+                            <label class="radio-inline"><input type="radio" name="type" value="manager" checked>I am a manager</label>
+                            <label class="radio-inline"><input type="radio" name="type" value="staff">I am a staff</label>
                     </div>
                     <button type="submit" name="login" class="btn bg-success">Log In</button>
                 </form>
