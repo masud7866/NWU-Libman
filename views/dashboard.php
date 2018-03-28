@@ -29,22 +29,42 @@ class dashboard extends templates\main_template
                 <div class="col-lg-12">
                     <div class="col-lg-3 dashstyle">
                         <h3 class="dash-title">Total Books</h3>
-                        <h1 class="dash-score">4000</h1>
+                        <h1 class="dash-score"><?php
+                        foreach ($this->db->get_books_count() as $row)
+                        {
+                            echo $row[0];
+                        }
+                            ?></h1>
                     </div>
 
                     <div class="col-lg-3 dashstyle">
                         <h3 class="dash-title">Total Members</h3>
-                        <h1 class="dash-score">2500</h1>
+                        <h1 class="dash-score"><?php
+                            foreach ($this->db->get_members_count() as $row)
+                            {
+                                echo $row[0];
+                            }
+                            ?></h1>
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Total Stuff</h3>
-                        <h1 class="dash-score">5</h1>
+                        <h3 class="dash-title">Total Staff</h3>
+                        <h1 class="dash-score"><?php
+                            foreach ($this->db->get_staffs_count() as $row)
+                            {
+                                echo $row[0];
+                            }
+                            ?></h1>
                     </div>
 
                     <div class="col-lg-3 dashstyle">
                         <h3 class="dash-title">Total Manager</h3>
-                        <h1 class="dash-score">2</h1>
+                        <h1 class="dash-score"><?php
+                            foreach ($this->db->get_managers_count() as $row)
+                            {
+                                echo $row[0];
+                            }
+                            ?></h1>
                     </div>
 
                     <div class="col-lg-3 dashstyle">

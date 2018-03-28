@@ -57,7 +57,10 @@ $klein->with('/manager', function () use ($klein) {
 
     $klein->respond('GET', '/dashboard', function ($request, $response) {
         require 'views/dashboard.php';
-        (new dashboard())->layout();
+        $db = new \db();
+        $dashboard = (new dashboard());
+        $dashboard->db = $db;
+        $dashboard->layout();
 
     });
 
