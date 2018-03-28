@@ -18,8 +18,12 @@ class db{
         }
         $sql = "SELECT * FROM books";
         $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_all();
+        }
         $conn->close();
-        return $result->fetch_all();
+        return false;
     }
     public function get_books_meta($id,$meta_key=null){
         // Create connection

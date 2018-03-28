@@ -23,7 +23,7 @@ class borrowings extends templates\main_template
 
     public function content()
     {
-        if ($this->db->get_all_borrowings() !== null) {
+        if ($this->db->get_all_borrowings() !== false) {
             ?>
             <div class="container">
                 <table id="example" class="display" style="width:100%">
@@ -210,5 +210,6 @@ class borrowings extends templates\main_template
 
     }
 }
+
 
 ?>

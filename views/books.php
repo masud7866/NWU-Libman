@@ -23,7 +23,7 @@ class books extends templates\main_template
 
     public function content()
     {
-        if ($this->db->get_all_books() !== null) {
+        if ($this->db->get_all_books() !== false) {
             ?>
             <div class="container">
                 <table id="example" class="display" style="width:100%">
