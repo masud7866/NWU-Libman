@@ -21,6 +21,9 @@ class edit_profile extends templates\main_template
 
     public function content()
     {
+        $auth = new \authenticator();
+        $db = new \db();
+        $isAuth = $auth->isAuthenicated();
         ?>
         <div class="container">
 
@@ -29,20 +32,13 @@ class edit_profile extends templates\main_template
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="Name">Name</label>
-                        <input type="text" id="Name" name="Name" class="form-control" required=""
-                               placeholder="Enter Your Name..."/>
+                        <input type="text" id="Name" name="name" class="form-control" required=""
+                               placeholder="Enter Your Name..." value="<?php echo $db->get_user_info_by_id($isAuth[1],$isAuth[2],'name'); ?>"/>
                     </div>
-                    <div class="form-group">
-                        <label for="Phone Number">Phone Number</label>
-                        <input type="text" id="Phone Number" name="Phone Number" class="form-control" required=""
-                               placeholder="Phone Number..."/>
-                    </div>
-
                 </form>
 
                 <div class="form-inline" align="center">
-                    <button type="button" class="btn btn-success">Submit</button>
-
+                    <input type="submit" class="btn btn-success" name="submit" value="Submit" />
                 </div>
 
             </div>

@@ -737,8 +737,18 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-
-
+        if($type=="staff"){
+            $sql = "UPDATE `staffs` SET `$field` = '$value' WHERE `staffs`.`id` = $id;";
+        }
+        else
+        {
+            $sql = "UPDATE `managers` SET `$field` = '$value' WHERE `managers`.`id` = $id;";
+        }
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn) > 0) {
+            return true;
+        }
+        return false;
     }
 
     public function delete_session($code)

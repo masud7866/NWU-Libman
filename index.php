@@ -140,6 +140,21 @@ if ($isAuth)
                     require 'views/edit_profile.php';
                     (new edit_profile())->layout();
                 });
+
+                $klein->respond('POST', '/edit', function ($request, $response) {
+                    require 'views/edit_profile.php';
+                    $auth = new \authenticator();
+                    $isAuth = $auth->isAuthenicated();
+
+                    $name = $request->param('name');
+                    $db = new \db();
+                    $db->update_user_profile($isAuth[1],$isAuth[2],'name',$name);
+
+                    $edit_profile = new edit_profile();
+                    $edit_profile->layout();
+
+                });
+
                 $klein->respond('GET', '/cpw', function ($request, $response) {
                     require 'views/change_password.php';
                     (new change_password())->layout();
