@@ -359,6 +359,42 @@ class db{
         }
     }
 
+    public function set_members_info($id,$field,$value){            //Updates members table
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql = "UPDATE members SET $field = '$value' WHERE members.id = $id";
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn) > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function set_members_meta($id,$meta_key,$meta_value){            //Updates members_meta table
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "UPDATE members_meta SET meta_value = '$meta_value' WHERE member_id = $id AND meta_key = '$meta_key'";
+
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn) > 0) {
+            return true;
+        }
+        return false;
+
+    }
+
     public function get_members_count(){
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -372,6 +408,8 @@ class db{
         $conn->close();
         return $result->fetch_all();
     }
+
+
 
     public function add_manager_staff($name, $email, $password, $type){
         $tmp = false;
@@ -653,8 +691,7 @@ class db{
             return false;
         }
 
-        $sql="SELECT `meta_value` FROM `members_meta` WHERE `id`= '$id' and `meta_key`=$key";
-
+        $sql="SELECT `meta_value` FROM `members_meta` WHERE `member_id`= '$id' and `meta_key`='$key'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             return ($result->fetch_all())[0][0];

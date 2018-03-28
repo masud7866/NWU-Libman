@@ -45,7 +45,7 @@ class members extends templates\main_template
 
                         ?>
                         <tr>
-                            <td><?php echo $row[1] ?></td>
+                            <td><a title="Edit profile" style="color: #7386D5; font-weight: bold;" href="edit/<?php echo $row[0] ?>"><?php echo $row[1] ?></a> </td>
                             <td><?php echo $row[2] ?></td>
                             <td><?php echo $row[3] ?></td>
                             <td><?php echo $row[4] ?></td>
