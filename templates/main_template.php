@@ -36,15 +36,13 @@ class main_template
                 }
                 ?>
             </title>
-            <!-- Bootstrap CSS CDN -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-            <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
-
-            <!-- Our Custom CSS -->
+            <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/jquery.dataTables.min.css">
+            <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/select.dataTables.min.css">
+            <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/bootstrap-select.min.css">
             <link rel="stylesheet" href="<?php APP_URL ?>/assets/css/main.css">
+
         </head>
         <body>
 
@@ -57,19 +55,20 @@ class main_template
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button" data-toggle="dropdown">Hello, <?php
+                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button"
+                                data-toggle="dropdown">Hello, <?php
                             $auth = new \authenticator();
                             $db = new \db();
                             $isAuth = $auth->isAuthenicated();
-                            if($isAuth)
-                            {
-                               echo $db->get_user_info_by_id($isAuth[1],$isAuth[2],'name');
+                            if ($isAuth) {
+                                echo $db->get_user_info_by_id($isAuth[1], $isAuth[2], 'name');
                             }
                             ?>
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo APP_URL . "/". $isAuth[2]."/profiles/edit" ?>">Profile</a></li>
-                            <li><a href="<?php echo APP_URL . "/".$isAuth[2]."/profiles/cpw" ?>">Change Password</a></li>
+                            <li><a href="<?php echo APP_URL . "/" . $isAuth[2] . "/profiles/edit" ?>">Profile</a></li>
+                            <li><a href="<?php echo APP_URL . "/" . $isAuth[2] . "/profiles/cpw" ?>">Change Password</a>
+                            </li>
                             <li><a href="<?php echo APP_URL . "/logout" ?>">Log Out</a></li>
                         </ul>
                     </div>
@@ -82,8 +81,7 @@ class main_template
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3 class="text-uppercase"><?php
-                        if($isAuth)
-                        {
+                        if ($isAuth) {
                             echo $isAuth[2];
                         }
                         ?> Panel</h3>
@@ -96,7 +94,7 @@ class main_template
                     ?>
                     <ul class="list-unstyled components">
 
-                        <?php if ($isAuth[2] == "staff") { ?>
+                    <?php if ($isAuth[2] == "staff") { ?>
                         <li>
                             <a href="<?php echo APP_URL . "/staff/dashboard" ?>">Dashboard</a>
                         </li>
@@ -114,7 +112,7 @@ class main_template
                                 <li><a href="<?php echo APP_URL . "/staff/members/" ?>">View Members</a></li>
                             </ul>
                         </li>
-                        <?php }else{ ?>
+                    <?php } else { ?>
                         <li>
                             <a href="<?php echo APP_URL . "/manager/dashboard" ?>">Dashboard</a>
                         </li>
@@ -146,8 +144,8 @@ class main_template
                                 <li><a href="<?php echo APP_URL . "/manager/members/" ?>">View Members</a></li>
                             </ul>
                         </li>
-                    </ul>
-                    <?php
+                        </ul>
+                        <?php
                     }
                 }
                 ?>
@@ -165,16 +163,12 @@ class main_template
             </div>
         </div>
 
-        <!-- jQuery CDN -->
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <!-- Bootstrap Js CDN -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-        <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-
-
+        <script src="<?php APP_URL ?>/assets/js/jquery-1.12.0.min.js"></script>
+        <script src="<?php APP_URL ?>/assets/js/bootstrap.min.js"></script>
+        <script src="<?php APP_URL ?>/assets/js/jquery.dataTables.min.js"></script>
+        <script src="<?php APP_URL ?>/assets/js/dataTables.bootstrap.min.js"></script>
+        <script src="<?php APP_URL ?>/assets/js/dataTables.select.min.js"></script>
+        <script src="<?php APP_URL ?>/assets/js/bootstrap-select.min.js"></script>
         <script src="<?php APP_URL ?>/assets/js/main.js"></script>
 
         </body>
