@@ -43,6 +43,20 @@ class db{
         }
     }
 
+    public function get_books_count(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT COUNT(*) FROM books";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
 
     public function insert_books($title, $edition, $subject, $author, $in_stock){
         $tmp = false;
@@ -238,6 +252,20 @@ class db{
         }
     }
 
+    public function get_members_count(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT COUNT(*) FROM members";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
     public function add_manager_staff($name, $email, $password, $type){
         $tmp = false;
 
@@ -288,6 +316,20 @@ class db{
         return $result->fetch_all();
     }
 
+    public function get_managers_count(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT COUNT(*) FROM managers";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
     public function get_all_staffs(){
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -297,6 +339,20 @@ class db{
             return false;
         }
         $sql = "SELECT * FROM staffs";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
+    public function get_staffs_count(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT COUNT(*) FROM staffs";
         $result = $conn->query($sql);
         $conn->close();
         return $result->fetch_all();
