@@ -62,6 +62,56 @@ class db{
 
     public function get_all_borrowings(){
 
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql="select * from `borrowings`";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $temparr=array();
+            while($row=$result->fetch_assoc()){
+                $id=$row["id"];
+                $book_id=$row["book_id"];
+                $member_id=$row["member_id"];
+                $book_tag=$row["book_tag"];
+                $due_by=$row["due_by"];
+                $authors = $this->get_books_meta($book_id,'author');
+                if($authors)
+                {
+                    $tmpAuthor = "";
+                    foreach ($authors as $author)
+                    {
+                        $tmpAuthor.= $author[0] . ", ";
+                    }
+                    $authors = substr($tmpAuthor,0,strlen($tmpAuthor)-2);
+                }
+
+                $status=$row["status"];
+                $book_title = $this->get_book_by_id($book_id)[1];
+                $member_name=$this->get_member_info_by_id($book_id,"name");
+                if($status==0){
+                    $status="Borrowed";
+                }else{
+                    $status="Returned";
+                }
+
+                $borrowingsarr=array("id" => $id,"books_title"=>$book_title,"member_name"=>$member_name,'authors'=>$authors,"book_tag"=>$book_tag,"due_by"=>$due_by,"status"=>$status);
+
+                array_push($temparr,$borrowingsarr);
+
+            }
+            return $temparr;
+        }
+        return false;
+
+
+
+
     }
 
 
@@ -781,3 +831,5 @@ $check2 = new authenticator();
 //$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf');
 //$check2->authenicate("zamanpranto@gmail.com","test1234","manager");
 //var_dump($check2->isAuthenicated());
+
+var_dump($check->get_all_borrowings());
