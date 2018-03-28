@@ -71,7 +71,7 @@ $klein->respond('GET', '/login', function ($request, $response) {
 $klein->respond('POST', '/login', function ($request, $response) {
     require 'views/login.php';
     $login = new login;
-
+    $auth = new \authenticator();
 
     $email = $request->param('email');
     $pass = $request->param('password');

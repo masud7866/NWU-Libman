@@ -672,6 +672,18 @@ class db{
 
     }
 
+    public function delete_session($code)
+    {
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+    }
+
 
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -743,6 +755,8 @@ class authenticator{
             return false;
         }
     }
+
+
 }
 
 
