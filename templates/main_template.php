@@ -103,8 +103,8 @@ class main_template
                         <li>
                             <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false">Borrowings</a>
                             <ul class="collapse list-unstyled" id="staffSubmenu">
-                                <li><a href="<?php echo APP_URL . "/staff/borrowings/add" ?>">Loan A Book</a></li>
-                                <li><a href="<?php echo APP_URL . "/staff/borrowings" ?>">History</a></li>
+                                <li><a href="<?php echo APP_URL . "/staff/borrowings/loan" ?>">Loan A Book</a></li>
+                                <li><a href="<?php echo APP_URL . "/staff/borrowings/" ?>">History</a></li>
                             </ul>
                         </li>
                         <?php }else{ ?>

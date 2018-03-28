@@ -159,7 +159,45 @@ if ($isAuth) {
                     require 'views/change_password.php';
                     (new change_password())->layout();
                 });
+                $klein->respond('POST', '/cpw', function ($request, $response) {
+                    require 'views/change_password.php';
+                    $cpass = new change_password();
+                    $auth = new \authenticator();
+                    $isAuth = $auth->isAuthenicated();
+
+                    $opw = $request->param('oldpassword');
+                    $npw = $request->param('newpassword');
+                    $vpw = $request->param('varifypassword');
+
+                    if($npw==$vpw)
+                    {
+                        $db = new \db();
+                        $opw = md5($opw);
+
+                        if($db->get_user_info_by_id($isAuth[1],$isAuth[2],'password')==$opw)
+                        {
+                            $db->update_user_profile($isAuth[1],$isAuth[2],'password',md5($npw));
+                            $cpass->err_msg = "<div class='bg-success'>Password changed successfully</div>";
+                        }
+                        else
+                        {
+                            $cpass->err_msg = "<div class='bg-danger'>Incorrent old password</div>";
+                        }
+
+                        //$db->update_user_profile($isAuth[1],$isAuth[2],'name',$name);
+
+                    }
+                    else
+                    {
+                        $cpass->err_msg = "<div class='bg-danger'>New password and confirm new password must be same</div>";
+                    }
+
+
+
+                    $cpass->layout();
+                });
             });
+
         });
     } else {
         $klein->with('/manager', function () use ($klein) {
@@ -328,6 +366,44 @@ if ($isAuth) {
                 $klein->respond('GET', '/cpw', function ($request, $response) {
                     require 'views/change_password.php';
                     (new change_password())->layout();
+                });
+
+                $klein->respond('POST', '/cpw', function ($request, $response) {
+                    require 'views/change_password.php';
+                    $cpass = new change_password();
+                    $auth = new \authenticator();
+                    $isAuth = $auth->isAuthenicated();
+
+                    $opw = $request->param('oldpassword');
+                    $npw = $request->param('newpassword');
+                    $vpw = $request->param('varifypassword');
+
+                    if($npw==$vpw)
+                    {
+                        $db = new \db();
+                        $opw = md5($opw);
+
+                        if($db->get_user_info_by_id($isAuth[1],$isAuth[2],'password')==$opw)
+                        {
+                            $db->update_user_profile($isAuth[1],$isAuth[2],'password',md5($npw));
+                            $cpass->err_msg = "<div class='bg-success'>Password changed successfully</div>";
+                        }
+                        else
+                        {
+                            $cpass->err_msg = "<div class='bg-danger'>Incorrent old password</div>";
+                        }
+
+                        //$db->update_user_profile($isAuth[1],$isAuth[2],'name',$name);
+
+                    }
+                    else
+                    {
+                        $cpass->err_msg = "<div class='bg-danger'>New password and confirm new password must be same</div>";
+                    }
+
+
+
+                    $cpass->layout();
                 });
                 $klein->respond('POST', '/edit', function ($request, $response) {
                     require 'views/edit_profile.php';

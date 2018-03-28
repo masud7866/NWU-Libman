@@ -10,6 +10,7 @@ namespace app\views;
 use app\templates;
 
 class change_password extends templates\main_template {
+    public $err_msg = null;
     public function title()
     {
         ?>
@@ -22,6 +23,13 @@ class change_password extends templates\main_template {
         ?>
         <div class="container">
             <div class="makeitcenter">
+                <?php
+                if ($this->err_msg !=null) {
+                    echo $this->err_msg;
+                    echo "<br>";
+                }
+
+                ?>
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="oldpassword">Old Password</label>
