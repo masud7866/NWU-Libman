@@ -56,12 +56,20 @@ class main_template
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button" data-toggle="dropdown">Hello Mr. XXX
+                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button" data-toggle="dropdown">Hello <?php
+                            $auth = new \authenticator();
+                            $db = new \db();
+                            $isAuth = $auth->isAuthenicated();
+                            if($isAuth)
+                            {
+                               echo $db->get_user_info_by_id($isAuth[1],$isAuth[2],'name');
+                            }
+                            ?>
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Change Password</a></li>
-                            <li><a href="#">Log Out</a></li>
+                            <li><a href="<?php echo APP_URL . "/manager/profiles/edit" ?>">Profile</a></li>
+                            <li><a href="<?php echo APP_URL . "/manager/profiles/cpw" ?>">Change Password</a></li>
+                            <li><a href="<?php echo APP_URL . "/logout" ?>">Log Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -111,13 +119,6 @@ class main_template
                             <ul class="collapse list-unstyled" id="memberSubmenu">
                                 <li><a href="<?php echo APP_URL . "/manager/members/add" ?>">Add Member</a></li>
                                 <li><a href="<?php echo APP_URL . "/manager/members/" ?>">View Members</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false">Profile</a>
-                            <ul class="collapse list-unstyled" id="profileSubmenu">
-                                <li><a href="<?php echo APP_URL . "/manager/profiles/edit" ?>">Edit Profile</a></li>
-                                <li><a href="<?php echo APP_URL . "/manager/profiles/cpw" ?>">Change Password</a></li>
                             </ul>
                         </li>
                     </ul>

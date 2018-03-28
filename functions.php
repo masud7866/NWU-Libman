@@ -732,6 +732,9 @@ class db{
             return false;
         }
 
+        $sql = "DELETE * FROM `sessions` WHERE `code` = '$code' LIMIT 1";
+        $result = $conn->query($sql);
+        return true;
     }
 
 
@@ -753,7 +756,6 @@ class authenticator{
     }
     public function authenicate($email,$pass,$type)
     {
-        require 'vendor/autoload.php';
         $db = new db();
 
 
@@ -806,7 +808,17 @@ class authenticator{
         }
     }
 
-
+    public function inAuth()
+    {
+        if(\Delight\Cookie\Cookie::exists('PHPSESID'))
+        {
+            $db = new db();
+            $phpsesid =  \Delight\Cookie\Cookie::get('PHPSESID');
+            $session = $db->delete_session($phpsesid);
+            $phpsesid = new \Delight\Cookie\Cookie('PHPSESID');
+            $phpsesid->delete();
+        }
+    }
 }
 
 
@@ -832,4 +844,4 @@ $check2 = new authenticator();
 //$check2->authenicate("zamanpranto@gmail.com","test1234","manager");
 //var_dump($check2->isAuthenicated());
 
-var_dump($check->get_all_borrowings());
+//var_dump($check->get_all_borrowings());
