@@ -626,7 +626,7 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-        $sql = "SELECT COUNT(*) FROM borrowings";
+        $sql = "SELECT COUNT(*) FROM borrowings WHERE status=0";
         $result = $conn->query($sql);
         $conn->close();
         return $result->fetch_all();
