@@ -200,17 +200,20 @@ class books extends templates\main_template
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
 
-                </div>
             </div>
             <?php
+        }
+        else
+        {
+            ?>
+             <div class="container">
+                 <div class="row">
+                     <h3>No record found!</h3>
+                 </div>
+
+             </div>
+             <?php
         }
 
     }
