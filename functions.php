@@ -617,6 +617,7 @@ class db{
 
     }
 
+
     public function get_member_meta_info_by_id($id,$key){
         //connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -690,6 +691,7 @@ class db{
         }
         return false;
     }
+
 
     public function insert_session($email,$type,$code)
     {

@@ -15,7 +15,7 @@ class edit_profile extends templates\main_template
     public function title()
     {
         ?>
-        Edit_Profile
+        Edit Profile
         <?php
     }
 
@@ -35,16 +35,12 @@ class edit_profile extends templates\main_template
                         <input type="text" id="Name" name="name" class="form-control" required=""
                                placeholder="Enter Your Name..." value="<?php echo $db->get_user_info_by_id($isAuth[1],$isAuth[2],'name'); ?>"/>
                     </div>
+                    <div class="form-inline" align="center">
+                        <button type="submit" name="update" class="btn bg-success">Update</button>
+                    </div>
+
                 </form>
-
-                <div class="form-inline" align="center">
-                    <input type="submit" class="btn btn-success" name="submit" value="Submit" />
-                </div>
-
             </div>
-
-
-
         </div>
         <?php
     }
