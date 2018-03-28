@@ -39,6 +39,13 @@ class login{
                         <input type="password" id="password" name="password" class="form-control" required=""
                                placeholder="Enter Your Password..."/>
                     </div>
+                    <div class="form-group">
+                        <div align="right">
+                            <label class="radio-inline"><input type="radio" name="rank" value="manager">Manager</label>
+                            <label class="radio-inline"><input type="radio" name="rank" value="staff">Staff</label>
+                        </div>
+
+                    </div>
                     <button type="submit" name="login" class="btn bg-success">Log In</button>
                 </form>
             </div>
