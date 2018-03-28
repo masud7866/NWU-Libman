@@ -202,6 +202,42 @@ class db{
         return $tmp;
     }
 
+    public function get_all_members(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT * FROM members";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
+    public function get_members_meta($id,$meta_key=null){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        if($meta_key==null) {
+            $sql = "SELECT * FROM members_meta WHERE member_id='$id'";
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_all();
+        }
+        else{
+            $sql = "SELECT meta_value FROM members_meta WHERE member_id='$id' AND meta_key='$meta_key'";
+            $result = $conn->query($sql);
+            $conn->close();
+            return $result->fetch_all();
+        }
+    }
+
     public function add_manager_staff($name, $email, $password, $type){
         $tmp = false;
 

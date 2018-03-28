@@ -10,20 +10,20 @@ namespace app\views;
 
 use app\templates;
 
-class staffs extends templates\main_template
+class members extends templates\main_template
 {
     public $db = null;
 
     public function title()
     {
         ?>
-        Staffs
+        Members
         <?php
     }
 
     public function content()
     {
-        if ($this->db->get_all_staffs() !== null) {
+        if ($this->db->get_all_members() !== null) {
             ?>
             <div class="container">
                 <table id="example" class="display" style="width:100%">
@@ -32,14 +32,16 @@ class staffs extends templates\main_template
                         <th></th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
-                        <th>Status</th>
-                        <th>Date of Staff Added</th>
+                        <th>Phone</th>
+                        <th>Type</th>
+                        <th>ID</th>
+                        <th>Date of Join</th>
+                        <th>Date of Member Added</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    foreach($this->db->get_all_staffs() as $row)
+                    foreach($this->db->get_all_members() as $row)
                     {
 
                         ?>
@@ -48,15 +50,26 @@ class staffs extends templates\main_template
                             <td><?php echo $row[1] ?></td>
                             <td><?php echo $row[2] ?></td>
                             <td><?php echo $row[3] ?></td>
+                            <td><?php echo $row[4] ?></td>
                             <td><?php
-                                if($row[4]=="1")
+                                $id = $this->db->get_members_meta($row[0],'id');
+                                if($id)
                                 {
-                                    echo "Active";
-                                }
-                                else
+                                    foreach ($id as $id)
                                     {
-                                        echo "Inactive";
+                                        echo $id[0];
                                     }
+                                }
+                                ?></td>
+                            <td><?php
+                                $joined = $this->db->get_members_meta($row[0],'joined');
+                                if($joined)
+                                {
+                                    foreach ($joined as $joined)
+                                    {
+                                        echo $joined[0];
+                                    }
+                                }
                                 ?></td>
                             <td><?php echo $row[5] ?></td>
                         </tr>
@@ -67,11 +80,13 @@ class staffs extends templates\main_template
                     <tfoot>
                     <tr>
                         <th></th>
-                         <th>Name</th>
+                        <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
-                        <th>Status</th>
-                        <th>Date of Staff Added</th>
+                        <th>Phone</th>
+                        <th>Type</th>
+                        <th>ID</th>
+                        <th>Date of Join</th>
+                        <th>Date of Member Added</th>
                     </tr>
                     </tfoot>
                 </table>

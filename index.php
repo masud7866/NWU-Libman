@@ -21,6 +21,7 @@ use app\views\login;
 use app\views\manager_add;
 use app\views\managers;
 use app\views\member_add;
+use app\views\members;
 use app\views\staff_add;
 use app\views\staffs;
 
@@ -171,7 +172,11 @@ $klein->with('/manager', function () use ($klein) {
 
     $klein->with('/members', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
-            return 'View all members page will be shown here';
+            require 'views/members.php';
+            $db = new \db();
+            $members = (new members());
+            $members->db = $db;
+            $members->layout();
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/member_add.php';
