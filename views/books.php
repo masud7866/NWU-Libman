@@ -34,7 +34,7 @@ class books extends templates\main_template
                         <th>Edition</th>
                         <th>Subject</th>
                         <th>Authors</th>
-                        <th>Book Added Date</th>
+                        <th>Date of Book Added</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,7 +73,7 @@ class books extends templates\main_template
                         <th>Edition</th>
                         <th>Subject</th>
                         <th>Authors</th>
-                        <th>Book Added Date</th>
+                        <th>Date of Book Added</th>
                     </tr>
                     </tfoot>
                 </table>

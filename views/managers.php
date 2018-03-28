@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Minhaz Rahman
- * Date: 3/27/2018
- * Time: 7:14 PM
+ * User: masud
+ * Date: 28-Mar-18
+ * Time: 10:10 AM
  */
 
 namespace app\views;
@@ -17,7 +17,7 @@ class managers extends templates\main_template
     public function title()
     {
         ?>
-        Books
+        Managers
         <?php
     }
 
@@ -34,7 +34,7 @@ class managers extends templates\main_template
                         <th>Email</th>
                         <th>Password</th>
                         <th>Status</th>
-                        <th>Manager Added Date</th>
+                        <th>Date of Manager Added</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,7 @@ class managers extends templates\main_template
                         <th>Email</th>
                         <th>Password</th>
                         <th>Status</th>
-                        <th>Manager Added Date</th>
+                        <th>Date of Manager Added</th>
                     </tr>
                     </tfoot>
                 </table>
