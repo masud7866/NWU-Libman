@@ -11,7 +11,6 @@ namespace app;
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-use app\views\book_view;
 use app\views\books;
 use app\views\books_add;
 use app\views\change_password;
@@ -24,6 +23,7 @@ use app\views\member_add;
 use app\views\members;
 use app\views\staff_add;
 use app\views\staffs;
+use app\views\borrowings;
 
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
@@ -240,6 +240,15 @@ $klein->with('/manager', function () use ($klein) {
             require 'views/change_password.php';
             (new change_password())->layout();
         });
+    });
+});
+$klein->with('/staff', function () use ($klein){
+    $klein->respond('GET', '/borrowings', function ($request, $response) {
+        require 'views/borrowings.php';
+        $db = new \db();
+        $books = (new borrowings());
+        $books->db = $db;
+        $books->layout();
     });
 });
 
