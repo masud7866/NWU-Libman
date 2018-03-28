@@ -44,7 +44,6 @@ class borrowings extends templates\main_template
                     <?php
                     foreach($borrowings as $row)
                     {
-
                         ?>
                         <tr>
                             <td><?php echo $row["books_title"]; ?></td>
@@ -54,10 +53,10 @@ class borrowings extends templates\main_template
                             <td><?php echo $row["authors"]; ?></td>
                             <td><?php echo $row["member_name"]; ?></td>
                             <td><?php echo $row["due_by"]; ?></td>
-
                             <td>
-                                <?php if($row['status'] == 1){ ?>
-                                <a href="return/<?php echo $row['id'] . "/" . $row["book_tag"]; ?>"><i class="glyphicon glyphicon-backward"></i> Return</a>
+                                <?php
+                                if($row['status'] == "Borrowed"){ ?>
+                                <a title="<?php echo $row['status'] ; ?>" href="return/<?php echo $row['id'] . "/" . $row["book_tag"]; ?>"><i class="glyphicon glyphicon-backward"></i> Return</a>
                                     <?php } ?>
                             </td>
 
