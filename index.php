@@ -16,6 +16,7 @@ use app\views\books_add;
 use app\views\change_password;
 use app\views\dashboard;
 use app\views\edit_profile;
+use app\views\error404;
 use app\views\login;
 use app\views\manager_add;
 use app\views\managers;
@@ -32,7 +33,7 @@ require 'templates/main_template.php';
 require 'functions.php';
 
 $klein = new \Klein\Klein();            //Initialize the Klein PHP Router object
-
+$auth = new \authenticator();
 
 $request = \Klein\Request::createFromGlobals();     //Get Global Blank Request
 $request->server()->set('REQUEST_URI', substr($_SERVER['REQUEST_URI'], strlen("")));       //Set Request Path
@@ -46,7 +47,6 @@ $klein->respond('GET', '/', function ($request, $response) {
 
 $klein->respond('GET', '/login', function ($request, $response) {
     $auth = new \authenticator();
-
     $isAuth = $auth->isAuthenicated();
     if ($isAuth)
     {
@@ -71,7 +71,7 @@ $klein->respond('GET', '/login', function ($request, $response) {
 $klein->respond('POST', '/login', function ($request, $response) {
     require 'views/login.php';
     $login = new login;
-    $auth = new \authenticator();
+
 
     $email = $request->param('email');
     $pass = $request->param('password');
@@ -105,186 +105,219 @@ $klein->respond('POST', '/login', function ($request, $response) {
 
 });
 
-$klein->with('/manager', function () use ($klein) {
+$isAuth = $auth->isAuthenicated();
+if ($isAuth)
+{
+    if($isAuth[2]=="staff")
+    {
+        $klein->with('/staff', function () use ($klein){
+            $klein->respond('GET', '/borrowings', function ($request, $response) {
+                require 'views/borrowings.php';
+                $db = new \db();
+                $books = (new borrowings());
+                $books->db = $db;
+                $books->layout();
+            });
+        });
+    }
+    else
+    {
+        $klein->with('/manager', function () use ($klein) {
 
-    $klein->respond('GET', '/', function ($request, $response) {
-        $response->redirect("/manager/dashboard")->send();
-    });
+            $klein->respond('GET', '/', function ($request, $response) {
+                $response->redirect("/manager/dashboard")->send();
+            });
 
-    $klein->respond('GET', '/dashboard', function ($request, $response) {
-        require 'views/dashboard.php';
-        $db = new \db();
-        $dashboard = (new dashboard());
-        $dashboard->db = $db;
-        $dashboard->layout();
+            $klein->respond('GET', '/dashboard', function ($request, $response) {
+                require 'views/dashboard.php';
+                $db = new \db();
+                $dashboard = (new dashboard());
+                $dashboard->db = $db;
+                $dashboard->layout();
 
-    });
+            });
 
-    $klein->with('/books', function () use ($klein) {
-        $klein->respond('GET', '/', function ($request, $response) {
-            require 'views/books.php';
-            $db = new \db();
-            $books = (new books());
-            $books->db = $db;
-            $books->layout();
-        });
-        $klein->respond('GET', '/add', function ($request, $response) {
-            require 'views/books_add.php';
-            (new books_add())->layout();
-        });
-        $klein->respond('POST', '/add', function ($request, $response) {
-            require 'views/books_add.php';
-            $title = $request->param('title');
-            $edition = $request->param('edition');
-            $subject = $request->param('subject');
-            $author = $request->param('author');
-            $stock = $request->param('stock');
+            $klein->with('/books', function () use ($klein) {
+                $klein->respond('GET', '/', function ($request, $response) {
+                    require 'views/books.php';
+                    $db = new \db();
+                    $books = (new books());
+                    $books->db = $db;
+                    $books->layout();
+                });
+                $klein->respond('GET', '/add', function ($request, $response) {
+                    require 'views/books_add.php';
+                    (new books_add())->layout();
+                });
+                $klein->respond('POST', '/add', function ($request, $response) {
+                    require 'views/books_add.php';
+                    $title = $request->param('title');
+                    $edition = $request->param('edition');
+                    $subject = $request->param('subject');
+                    $author = $request->param('author');
+                    $stock = $request->param('stock');
 
-            if (strpos($author,",")==false){
-                $author = array($author);
-            }
-            else
-            {
-                $author=explode(",",$author);
-            }
-            $db = new \db();
-            $res = $db->insert_books($title,$edition,$subject,$author,$stock);
-            $add_book = (new books_add());
-            if ($res)
-            {
-                $add_book->err_msg = "<div class='bg-success'>The book is successfully added to the stock</div>";
-            }
-            else
-            {
-                $add_book->err_msg = "<div class='bg-danger'>The book could not be added</div>";
-            }
+                    if (strpos($author,",")==false){
+                        $author = array($author);
+                    }
+                    else
+                    {
+                        $author=explode(",",$author);
+                    }
+                    $db = new \db();
+                    $res = $db->insert_books($title,$edition,$subject,$author,$stock);
+                    $add_book = (new books_add());
+                    if ($res)
+                    {
+                        $add_book->err_msg = "<div class='bg-success'>The book is successfully added to the stock</div>";
+                    }
+                    else
+                    {
+                        $add_book->err_msg = "<div class='bg-danger'>The book could not be added</div>";
+                    }
 
-            $add_book->layout();
-        });
-    });
+                    $add_book->layout();
+                });
+            });
 
-    $klein->with('/managers', function () use ($klein) {
-        $klein->respond('GET', '/', function ($request, $response) {
-            require 'views/managers.php';
-            $db = new \db();
-            $managers = (new managers());
-            $managers->db = $db;
-            $managers->layout();
-        });
-        $klein->respond('GET', '/add', function ($request, $response) {
-            require 'views/manager_add.php';
-            (new manager_add())->layout();
-        });
-        $klein->respond('POST', '/add', function ($request, $response) {
-            require 'views/manager_add.php';
-            $name = $request->param('name');
-            $email = $request->param('email');
-            $password = $request->param('password');
-            $db = new \db();
-            $res = $db->add_manager_staff($name,$email,$password,"manager");
-            $add_manager = (new manager_add());
-            if ($res)
-            {
-                $add_manager->err_msg = "<div class='bg-success'>The manager is successfully added</div>";
-            }
-            else
-            {
-                $add_manager->err_msg = "<div class='bg-danger'>The manager could not be added</div>";
-            }
+            $klein->with('/managers', function () use ($klein) {
+                $klein->respond('GET', '/', function ($request, $response) {
+                    require 'views/managers.php';
+                    $db = new \db();
+                    $managers = (new managers());
+                    $managers->db = $db;
+                    $managers->layout();
+                });
+                $klein->respond('GET', '/add', function ($request, $response) {
+                    require 'views/manager_add.php';
+                    (new manager_add())->layout();
+                });
+                $klein->respond('POST', '/add', function ($request, $response) {
+                    require 'views/manager_add.php';
+                    $name = $request->param('name');
+                    $email = $request->param('email');
+                    $password = $request->param('password');
+                    $db = new \db();
+                    $res = $db->add_manager_staff($name,$email,$password,"manager");
+                    $add_manager = (new manager_add());
+                    if ($res)
+                    {
+                        $add_manager->err_msg = "<div class='bg-success'>The manager is successfully added</div>";
+                    }
+                    else
+                    {
+                        $add_manager->err_msg = "<div class='bg-danger'>The manager could not be added</div>";
+                    }
 
-            $add_manager->layout();
-        });
-    });
+                    $add_manager->layout();
+                });
+            });
 
-    $klein->with('/staffs', function () use ($klein) {
-        $klein->respond('GET', '/', function ($request, $response) {
-            require 'views/staffs.php';
-            $db = new \db();
-            $staffs = (new staffs());
-            $staffs->db = $db;
-            $staffs->layout();
-        });
-        $klein->respond('GET', '/add', function ($request, $response) {
-            require 'views/staff_add.php';
-            (new staff_add())->layout();
-        });
-        $klein->respond('POST', '/add', function ($request, $response) {
-            require 'views/staff_add.php';
-            $name = $request->param('name');
-            $email = $request->param('email');
-            $password = $request->param('password');
-            $db = new \db();
-            $res = $db->add_manager_staff($name,$email,$password,"staff");
-            $add_staff = (new staff_add());
-            if ($res)
-            {
-                $add_staff->err_msg = "<div class='bg-success'>The staff is successfully added</div>";
-            }
-            else
-            {
-                $add_staff->err_msg = "<div class='bg-danger'>The staff could not be added</div>";
-            }
+            $klein->with('/staffs', function () use ($klein) {
+                $klein->respond('GET', '/', function ($request, $response) {
+                    require 'views/staffs.php';
+                    $db = new \db();
+                    $staffs = (new staffs());
+                    $staffs->db = $db;
+                    $staffs->layout();
+                });
+                $klein->respond('GET', '/add', function ($request, $response) {
+                    require 'views/staff_add.php';
+                    (new staff_add())->layout();
+                });
+                $klein->respond('POST', '/add', function ($request, $response) {
+                    require 'views/staff_add.php';
+                    $name = $request->param('name');
+                    $email = $request->param('email');
+                    $password = $request->param('password');
+                    $db = new \db();
+                    $res = $db->add_manager_staff($name,$email,$password,"staff");
+                    $add_staff = (new staff_add());
+                    if ($res)
+                    {
+                        $add_staff->err_msg = "<div class='bg-success'>The staff is successfully added</div>";
+                    }
+                    else
+                    {
+                        $add_staff->err_msg = "<div class='bg-danger'>The staff could not be added</div>";
+                    }
 
-            $add_staff->layout();
-        });
-    });
+                    $add_staff->layout();
+                });
+            });
 
-    $klein->with('/members', function () use ($klein) {
-        $klein->respond('GET', '/', function ($request, $response) {
-            require 'views/members.php';
-            $db = new \db();
-            $members = (new members());
-            $members->db = $db;
-            $members->layout();
-        });
-        $klein->respond('GET', '/add', function ($request, $response) {
-            require 'views/member_add.php';
-            (new member_add())->layout();
-        });
-        $klein->respond('POST', '/add', function ($request, $response) {
-            require 'views/member_add.php';
-            $name = $request->param('name');
-            $email = $request->param('email');
-            $phone = $request->param('phone');
-            $type = $request->param('type');
-            $id = $request->param('id');
-            $join_date = $request->param('join-date');
-            $db = new \db();
-            $res = $db->add_members($name,$email,$phone,$type,$id,$join_date);
-            $add_member = (new member_add());
-            if ($res)
-            {
-                $add_member->err_msg = "<div class='bg-success'>The member is successfully added</div>";
-            }
-            else
-            {
-                $add_member->err_msg = "<div class='bg-danger'>The member could not be added</div>";
-            }
+            $klein->with('/members', function () use ($klein) {
+                $klein->respond('GET', '/', function ($request, $response) {
+                    require 'views/members.php';
+                    $db = new \db();
+                    $members = (new members());
+                    $members->db = $db;
+                    $members->layout();
+                });
+                $klein->respond('GET', '/add', function ($request, $response) {
+                    require 'views/member_add.php';
+                    (new member_add())->layout();
+                });
+                $klein->respond('POST', '/add', function ($request, $response) {
+                    require 'views/member_add.php';
+                    $name = $request->param('name');
+                    $email = $request->param('email');
+                    $phone = $request->param('phone');
+                    $type = $request->param('type');
+                    $id = $request->param('id');
+                    $join_date = $request->param('join-date');
+                    $db = new \db();
+                    $res = $db->add_members($name,$email,$phone,$type,$id,$join_date);
+                    $add_member = (new member_add());
+                    if ($res)
+                    {
+                        $add_member->err_msg = "<div class='bg-success'>The member is successfully added</div>";
+                    }
+                    else
+                    {
+                        $add_member->err_msg = "<div class='bg-danger'>The member could not be added</div>";
+                    }
 
-            $add_member->layout();
-        });
-    });
+                    $add_member->layout();
+                });
+            });
 
-    $klein->with('/profiles', function () use ($klein) {
-        $klein->respond('GET', '/edit', function ($request, $response) {
-            require 'views/edit_profile.php';
-            (new edit_profile())->layout();
+            $klein->with('/profiles', function () use ($klein) {
+                $klein->respond('GET', '/edit', function ($request, $response) {
+                    require 'views/edit_profile.php';
+                    (new edit_profile())->layout();
+                });
+                $klein->respond('GET', '/cpw', function ($request, $response) {
+                    require 'views/change_password.php';
+                    (new change_password())->layout();
+                });
+            });
         });
-        $klein->respond('GET', '/cpw', function ($request, $response) {
-            require 'views/change_password.php';
-            (new change_password())->layout();
-        });
-    });
+    }
+
+}
+
+
+
+$klein->onHttpError(function ($code, $router) {
+    switch ($code) {
+        case 404:
+            require "views/error404.php";
+            (new error404())->layout();
+
+            break;
+        case 405:
+            $router->response()->body(
+                'You can\'t do that!'
+            );
+            break;
+        default:
+            $router->response()->body(
+                'Oh no, a bad error happened that caused a '. $code
+            );
+    }
 });
-$klein->with('/staff', function () use ($klein){
-    $klein->respond('GET', '/borrowings', function ($request, $response) {
-        require 'views/borrowings.php';
-        $db = new \db();
-        $books = (new borrowings());
-        $books->db = $db;
-        $books->layout();
-    });
-});
+
 
 
 

@@ -722,7 +722,7 @@ class authenticator{
 
     public function isAuthenicated()
     {
-        require 'vendor/autoload.php';
+
         if(\Delight\Cookie\Cookie::exists('PHPSESID'))
         {
             $db = new db();
