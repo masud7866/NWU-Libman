@@ -57,6 +57,20 @@ class db{
         return $result->fetch_all();
     }
 
+    public function get_av_copies_count(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT COUNT(*) FROM books_meta WHERE meta_key = 'tag'";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
 
     public function insert_books($title, $edition, $subject, $author, $in_stock){
         $tmp = false;

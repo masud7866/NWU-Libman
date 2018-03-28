@@ -68,8 +68,13 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Stock Warning!</h3>
-                        <h1 class="dash-score">20</h1>
+                        <h3 class="dash-title">Total available copies</h3>
+                        <h1 class="dash-score"><?php
+                            foreach ($this->db->get_av_copies_count() as $row)
+                            {
+                                echo $row[0];
+                            }
+                            ?></h1>
                     </div>
 
                     <div class="col-lg-3 dashstyle">
