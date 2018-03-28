@@ -722,6 +722,19 @@ class db{
 
     }
 
+    public function update_user_profile($id,$type,$field,$value)
+    {
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+
+    }
+
     public function delete_session($code)
     {
         // Create connection
@@ -843,5 +856,4 @@ $check2 = new authenticator();
 //$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf');
 //$check2->authenicate("zamanpranto@gmail.com","test1234","manager");
 //var_dump($check2->isAuthenicated());
-
 //var_dump($check->get_all_borrowings());

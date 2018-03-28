@@ -80,7 +80,12 @@ class main_template
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Manager Panel</h3>
+                    <h3 class="text-uppercase"><?php
+                        if($isAuth)
+                        {
+                            echo $isAuth[2];
+                        }
+                        ?> Panel</h3>
                 </div>
 
                 <?php
