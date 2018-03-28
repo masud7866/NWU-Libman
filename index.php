@@ -150,7 +150,6 @@ if ($isAuth) {
                     $update_member->layout();
                 });
 
-
                 $klein->respond('GET', '/delete/[:id]', function ($request, $response) {
                     $db = new \db();
                     $db->remove_member($request->id);
@@ -419,6 +418,36 @@ if ($isAuth) {
                 $klein->respond('GET', '/update', function ($request, $response) {
                     require 'views/update_member.php';
                     (new update_member())->layout();
+                });
+
+                $klein->respond('GET', '/edit/[i:id]', function ($request, $response) {
+                    require 'views/update_member.php';
+                    $update_member = new  update_member();
+                    $update_member->id = $request->id;
+                    $update_member->layout();
+                });
+
+                $klein->respond('POST', '/edit/[i:mid]', function ($request, $response) {
+                    require 'views/update_member.php';
+                    $update_member = new  update_member();
+                    $db = new \db();
+                    $update_member->id = $request->mid;
+                    $id = $request->param('id');
+                    $name = $request->param('name');
+                    $phone = $request->param('phone');
+
+                    $db->set_members_meta($request->mid,'id',$id);
+                    $db->set_members_info($request->mid,'id',$id);
+                    $db->set_members_info($request->mid,'id',$id);
+
+                    $update_member->err_msg = '<div class="bg-success">Member info updated</div>';
+                    $update_member->layout();
+                });
+
+                $klein->respond('GET', '/delete/[:id]', function ($request, $response) {
+                    $db = new \db();
+                    $db->remove_member($request->id);
+                    $response->redirect("/manager/members/")->send();
                 });
 
                 $klein->respond('POST', '/add', function ($request, $response) {
