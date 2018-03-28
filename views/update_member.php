@@ -48,7 +48,8 @@ class update_member extends templates\main_template
                                    placeholder="Phone..."/>
                         </div>
                     </form>
-
+                    <button type="button" class="btn btn-info">Update Info</button>
+                    <button type="button" class="btn btn-danger">Delete Member</button>
                 </div>
             </div>
         </div>
