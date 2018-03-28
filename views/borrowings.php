@@ -37,6 +37,7 @@ class borrowings extends templates\main_template
                         <th>Authors</th>
                         <th>Member Name</th>
                         <th>Due By</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,11 @@ class borrowings extends templates\main_template
                             <td><?php echo $row["member_name"]; ?></td>
                             <td><?php echo $row["due_by"]; ?></td>
 
+                            <td>
+                                <?php if($row['status'] == 1){ ?>
+                                <a href="return/<?php echo $row['id'] . "/" . $row["book_tag"]; ?>"><i class="glyphicon glyphicon-backward"></i> Return</a>
+                                    <?php } ?>
+                            </td>
 
                         </tr>
 
@@ -69,7 +75,7 @@ class borrowings extends templates\main_template
                         <th>Authors</th>
                         <th>Member Name</th>
                         <th>Due By</th>
-
+                        <th>Action</th>
                     </tr>
                     </tfoot>
                 </table>

@@ -161,6 +161,12 @@ if ($isAuth) {
                     $books->layout();
                 });
 
+                $klein->respond('GET', '/return/[i:bid]/[:btag]', function ($request, $response) {
+                    $db = new \db();
+                    $db->retrieve_book($request->bid,$request->btag);
+                    $response->redirect("/staff/borrowings/")->send();
+                });
+
                 $klein->respond('GET', '/loan', function ($request, $response) {
                     require 'views/loan_a_book.php';
                     (new loan_a_book())->layout();

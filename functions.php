@@ -121,7 +121,7 @@ class db{
                     $status="Returned";
                 }
 
-                $borrowingsarr=array("id" => $id,"subject"=>$subject,"edition"=>$edition,"books_title"=>$book_title,"member_name"=>$member_name,'authors'=>$authors,"book_tag"=>$book_tag,"due_by"=>$due_by,"status"=>$status);
+                $borrowingsarr=array("id" => $book_id,"subject"=>$subject,"edition"=>$edition,"books_title"=>$book_title,"member_name"=>$member_name,'authors'=>$authors,"book_tag"=>$book_tag,"due_by"=>$due_by,"status"=>$status);
 
                 array_push($temparr,$borrowingsarr);
 
