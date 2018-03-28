@@ -32,6 +32,7 @@ class borrowings extends templates\main_template
                     <tr>
                         <th>Book Title</th>
                         <th>Edition</th>
+                        <th>Tag</th>
                         <th>Subject</th>
                         <th>Authors</th>
                         <th>Member Name</th>
@@ -47,10 +48,13 @@ class borrowings extends templates\main_template
                         <tr>
                             <td><?php echo $row["books_title"]; ?></td>
                             <td><?php echo $row["edition"]; ?></td>
+                            <td><?php echo $row["book_tag"]; ?></td>
                             <td><?php echo $row["subject"]; ?></td>
                             <td><?php echo $row["authors"]; ?></td>
                             <td><?php echo $row["member_name"]; ?></td>
                             <td><?php echo $row["due_by"]; ?></td>
+
+
                         </tr>
 
 
@@ -60,10 +64,12 @@ class borrowings extends templates\main_template
                     <tr>
                       <th>Book Title</th>
                         <th>Edition</th>
+                        <th>Tag</th>
                         <th>Subject</th>
                         <th>Authors</th>
                         <th>Member Name</th>
                         <th>Due By</th>
+
                     </tr>
                     </tfoot>
                 </table>

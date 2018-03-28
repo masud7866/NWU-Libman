@@ -99,6 +99,7 @@ class db{
                 $book_tag=$row["book_tag"];
                 $due_by=$row["due_by"];
                 $authors = $this->get_books_meta($book_id,'author');
+
                 if($authors)
                 {
                     $tmpAuthor = "";
