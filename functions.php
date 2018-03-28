@@ -590,6 +590,26 @@ class db{
         return $result;
     }
 
+    public function get_session($code)
+    {
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql = "SELECT * FROM `sessions` WHERE `code` = '$code' LIMIT 1";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            return ($result->fetch_all())[0];
+        }
+
+        return false;
+
+    }
+
 
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -631,21 +651,24 @@ class authenticator{
             {
                 return false;
             }
-
         }
         else
         {
             return false;
         }
-
-
-      //  var_dump(\Delight\Cookie\Cookie::exists('PHPSESID'));
-
     }
 
     public function isAuthenicated()
     {
-
+        require 'vendor/autoload.php';
+        if(\Delight\Cookie\Cookie::exists('PHPSESID'))
+        {
+          $phpsesid =  \Delight\Cookie\Cookie::get('PHPSESID');
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
@@ -670,3 +693,4 @@ $check2 = new authenticator();
 //$check->get_user_info_by_id(5,'manager','email');
 //$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf');
 //$check2->authenicate("zamanpranto@gmail.com","test1234","manager");
+//var_dump($check->get_session("bd183c162da89f2471f2fe8d67b8fe51")[4]);

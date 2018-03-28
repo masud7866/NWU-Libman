@@ -49,6 +49,28 @@ $klein->respond('GET', '/login', function ($request, $response) {
     (new login)->layout();
 });
 
+$klein->respond('POST', '/login', function ($request, $response) {
+    require 'views/login.php';
+    $login = new login;
+    $db = new \db();
+    $auth = new \authenticator();
+
+    $email = $request->param('email');
+    $pass = $request->param('password');
+    $type = $request->param('type');
+
+    if($auth->authenicate($email,$pass,$type))
+    {
+
+    }
+    else
+    {
+        $login->err_msg = "<div class='bg-danger'>Invalid credentials</div>";
+        $login->layout();
+    }
+
+});
+
 $klein->with('/manager', function () use ($klein) {
 
     $klein->respond('GET', '/', function ($request, $response) {

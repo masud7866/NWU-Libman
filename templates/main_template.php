@@ -118,7 +118,6 @@ class main_template
                     <?php
                 }
                 ?>
-
             </nav>
 
 

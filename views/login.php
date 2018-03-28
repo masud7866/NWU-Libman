@@ -7,6 +7,7 @@
  */
 namespace app\views;
 class login{
+    public $err_msg = null;
 
     public function layout(){
 ?>
@@ -28,6 +29,13 @@ class login{
         </div>
         <div class="panel-body">
             <div class="formCenter">
+                <?php
+
+                if ($this->err_msg !=null) {
+                    echo $this->err_msg;
+                }
+
+                ?>
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -40,11 +48,8 @@ class login{
                                placeholder="Enter Your Password..."/>
                     </div>
                     <div class="form-group">
-                        <div align="right">
-                            <label class="radio-inline"><input type="radio" name="rank" value="manager">Manager</label>
-                            <label class="radio-inline"><input type="radio" name="rank" value="staff">Staff</label>
-                        </div>
-
+                            <label class="radio-inline"><input type="radio" name="type" value="manager">Manager</label>
+                            <label class="radio-inline"><input type="radio" name="type" value="staff">Staff</label>
                     </div>
                     <button type="submit" name="login" class="btn bg-success">Log In</button>
                 </form>
