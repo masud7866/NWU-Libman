@@ -241,6 +241,7 @@ body {
 }
 
 .formCenter {
+    max-width: 222px;
 }
 
 .loginform {

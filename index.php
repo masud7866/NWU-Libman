@@ -17,6 +17,7 @@ use app\views\change_password;
 use app\views\dashboard;
 use app\views\edit_profile;
 use app\views\error404;
+use app\views\loan_a_book;
 use app\views\login;
 use app\views\manager_add;
 use app\views\managers;
@@ -114,13 +115,25 @@ if ($isAuth) {
 
             });
 
-            $klein->respond('GET', '/borrowings', function ($request, $response) {
-                require 'views/borrowings.php';
-                $db = new \db();
-                $books = (new borrowings());
-                $books->db = $db;
-                $books->layout();
+            $klein->with('/borrowings', function () use ($klein) {
+
+                $klein->respond('GET', '/', function ($request, $response) {
+                    require 'views/borrowings.php';
+                    $db = new \db();
+                    $books = (new borrowings());
+                    $books->db = $db;
+                    $books->layout();
+                });
+
+                $klein->respond('GET', '/loan', function ($request, $response) {
+                    require 'views/loan_a_book.php';
+                    (new loan_a_book())->layout();
+                });
+
             });
+
+
+
 
             $klein->with('/profiles', function () use ($klein) {
                 $klein->respond('GET', '/edit', function ($request, $response) {
