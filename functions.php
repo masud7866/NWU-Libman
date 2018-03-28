@@ -579,6 +579,19 @@ class db{
         $conn->close();
         return $result->fetch_all();
     }
+    function count_borrowed_book(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT COUNT(*) FROM borrowings";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
 
     public function check_credentials($email,$password,$type){
         $tmp = false;

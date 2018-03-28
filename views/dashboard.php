@@ -79,7 +79,12 @@ class dashboard extends templates\main_template
 
                     <div class="col-lg-3 dashstyle">
                         <h3 class="dash-title">Active Borrowings Member</h3>
-                        <h1 class="dash-score">2000</h1>
+                        <h1 class="dash-score"><?php
+                            foreach ($this->db->count_borrowed_book() as $row)
+                            {
+                                echo $row[0];
+                            }
+                            ?></h1>
                     </div>
                 </div>
 
