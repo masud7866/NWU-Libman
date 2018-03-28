@@ -252,3 +252,9 @@ body {
 
 .loginicon {
 }
+
+#bs-example-navbar-collapse-1 .dropdown-menu
+{
+    top: 80% !important;
+    left: 45px !important;
+}

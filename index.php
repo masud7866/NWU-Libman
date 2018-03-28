@@ -112,7 +112,6 @@ if ($isAuth) {
                 $dashboard = (new dashboard());
                 $dashboard->db = $db;
                 $dashboard->layout();
-
             });
             $klein->with('/members', function () use ($klein) {
                 $klein->respond('GET', '/', function ($request, $response) {
@@ -166,11 +165,28 @@ if ($isAuth) {
                     require 'views/loan_a_book.php';
                     (new loan_a_book())->layout();
                 });
+                $klein->respond('POST', '/loan', function ($request, $response) {
+                    require 'views/loan_a_book.php';
+                    $db = new \db();
+                    $loanbook = new loan_a_book();
+                    $member_id = $request->param('member_id');
+                    $book_id = $request->param('book_id');
+                    $book_tag = $request->param('book_tag');
+                    $returndate = $request->param('returndate');
 
+                    $lbk = $db->loan_book($book_id,$member_id,$book_tag,$returndate);
+                    if ($lbk)
+                    {
+                        $loanbook->err_msg =  "<div class='bg-success'>The book has been successfully added to the borrowed list</div>";
+                    }
+                    else
+                    {
+                        $loanbook->err_msg =  "<div class='bg-danger'>The book could not be added to borrowed list</div>";
+                    }
+
+                    $loanbook->layout();
+                });
             });
-
-
-
 
             $klein->with('/profiles', function () use ($klein) {
                 $klein->respond('GET', '/edit', function ($request, $response) {

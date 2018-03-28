@@ -46,28 +46,27 @@ class loan_a_book extends templates\main_template
             ?>
             <form action="" method="post" class="formCenter">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="member_id">Name</label>
                     <br>
-                    <select class="selectpicker" data-live-search="true">
+                    <select class="selectpicker" data-live-search="true" name="member_id" id="member_id">
                         <?php
                             foreach ($db->get_all_members() as $row)
                             {
-
                         ?>
-                                <option data-tokens="<?php echo $row[1] ?>" name="member_id" value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
+                                <option data-tokens="<?php echo $row[1] ?>"  value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
                         <?php } ?>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="bookname">Book Name</label>
+                    <label for="book_id">Book Name</label>
                     <br>
-                    <select class="selectpicker" data-live-search="true">
+                    <select class="selectpicker" data-live-search="true" name="book_id" id="book_id">
                         <?php
                         foreach ($db->get_all_books() as $row)
                         {
                             ?>
-                            <option data-tokens="<?php echo $row[1] . " " . $row[2] . " edition"?>" name="book_id" value="<?php echo $row[0] ?>"><?php echo $row[1] . " " . $row[2] . " edition"?></option>
+                            <option data-tokens="<?php echo $row[1] . " " . $row[2] . " edition"?>" value="<?php echo $row[0] ?>"><?php echo $row[1] . " " . $row[2] . " edition"?></option>
                         <?php } ?>
 
                     </select>
@@ -75,9 +74,9 @@ class loan_a_book extends templates\main_template
                 </div>
 
                 <div class="form-group">
-                    <label for="edition">Tag</label>
+                    <label for="tag">Tag</label>
                     <br>
-                    <select class="selectpicker" data-live-search="true">
+                    <select class="selectpicker" data-live-search="true" name="book_tag" id="book_tag">
                         <?php
                         foreach ($db->get_all_tags() as $row)
                         {
