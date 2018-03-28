@@ -5,7 +5,7 @@
  * Date: 23-Mar-18
  * Time: 7:15 PM
  */
-//include 'config.php';
+include 'config.php';
 
 class db{
     public function get_all_books(){
@@ -226,7 +226,7 @@ class db{
             return $tmp;
         }
         else {
-            $sql = "INSERT INTO managers (name, email, password, active) VALUES ('$name', '$email', '$password', 1)";
+            $sql = "INSERT INTO managers (name, email, password, active) VALUES ('$name', '$email', MD5('$password'), 1)";
             $result = $conn->query($sql);
             if ($result === TRUE) {
 
@@ -365,7 +365,7 @@ class db{
         $sql = "SELECT id FROM books_meta WHERE book_id = '$book_id' AND meta_value = '$book_tag'";
         $result = $conn->query($sql);
         $conn->close();
-        return $result->fetch_assoc();
+        return $result->fetch_all();
     }
 
     function is_book_borrowed($book_id, $book_tag){
@@ -379,7 +379,7 @@ class db{
         $sql = "SELECT id FROM borrowings WHERE book_id = '$book_id' AND book_tag = '$book_tag' AND status = 0";
         $result = $conn->query($sql);
         $conn->close();
-        return $result->fetch_assoc();
+        return $result->fetch_all();
     }
 
     public function check_credentials($email,$password,$type){
@@ -412,9 +412,9 @@ class db{
             }
     }
 
-    public function insert_session($uid,$type,$code,$ua)
+
+    public function get_user_info_by_email($email,$type,$field)
     {
-        $tmp = false;
 
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -423,36 +423,69 @@ class db{
         if ($conn->connect_error) {
             return false;
         }
-
-        $sql = "INSERT INTO `sessions` (`id`, `user_id`, `type`, `code`, `user_agent`, `created_at`) VALUES (NULL, '$uid', '$type', '$code', '$ua', CURRENT_TIMESTAMP);";
-
-
-
-
-    }
-
-    public function get_id_by_email($email,$type)
-    {
-        $tmp = false;
-
-        // Create connection
-        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
-
-        // Check connection
-        if ($conn->connect_error) {
-            return false;
-        }
-        if($type="staff")
+        if($type=="staff")
         {
-            $sql = "SELECT * FROM `staffs` WHERE `email` = '$email' AND `password` = MD5('$password')";
+            $sql = "SELECT $field FROM `staffs` WHERE `email` = '$email'";
         }
         else
         {
-
+            $sql = "SELECT $field FROM `managers` WHERE `email` = '$email'";
         }
 
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            return ($result->fetch_all())[0][0];
+        }
+        return false;
+    }
+
+    public function get_user_info_by_id($uid,$type,$field)
+    {
+
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        if($type=="staff")
+        {
+            $sql = "SELECT $field FROM `staffs` WHERE `id` = $uid";
+        }
+        else
+        {
+            $sql = "SELECT $field FROM `managers` WHERE `id` = $uid";
+        }
+
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+            return ($result->fetch_all())[0][0];
+        }
+        return false;
 
     }
+
+    public function insert_session($email,$type,$code,$ua)
+    {
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $uid = $this->get_user_info_by_email($email,$type,'id');
+
+        $sql = "INSERT INTO `sessions` (`id`, `user_id`, `type`, `code`, `user_agent`, `created_at`) VALUES (NULL,$uid, '$type', '$code', '$ua', CURRENT_TIMESTAMP);";
+        $result = $conn->query($sql);
+
+        return $result;
+
+    }
+
 
    function generateRandomString($length = 8) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -472,8 +505,19 @@ class authenticator{
     }
     public function authenicate($email,$pass,$type)
     {
+        $db = new db();
+
+
+        if($db->check_credentials($email,$pass,$type))
+        {
+            $phpsesid = md5($db->generateRandomString());
+
+        }
+
+
+
         $cookie = new \Delight\Cookie\Cookie('PHPSESID');
-        $cookie->setValue('31d4d96e407aad42');
+        $cookie->setValue($phpsesid);
         $cookie->setMaxAge(60 * 60 * 24);
 // $cookie->setExpiryTime(time() + 60 * 60 * 24);
         $cookie->setPath('/');
@@ -493,6 +537,7 @@ class authenticator{
 
 
 $check = new db();
+
 //$check->get_all_books();
 //$check->remove_from_stock('17',array('A6VG','Zetd'));
 //$check->delete_book("19");
@@ -507,3 +552,5 @@ $check = new db();
 //$check->is_book_borrowed("20","DAQ1J0yZ");
 //$check->retrieve_book("20","DAQ1J0yZ");
 //$check->get_all_books();
+//$check->get_user_info_by_id(5,'manager','email');
+//$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf','asdfasdfasdf');
