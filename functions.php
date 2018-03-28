@@ -621,7 +621,6 @@ class db{
     function count_borrowed_book(){
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
-
         // Check connection
         if ($conn->connect_error) {
             return false;
@@ -631,6 +630,43 @@ class db{
         $conn->close();
         return $result->fetch_all();
     }
+
+    public function set_book_info($id,$field,$value){            //Updates members table
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql = "UPDATE books SET $field = '$value' WHERE books.id = $id";
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn) > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function set_book_meta($id,$meta_key,$meta_value){            //Updates members_meta table
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "UPDATE members_meta SET meta_value = '$meta_value' WHERE member_id = $id AND meta_key = '$meta_key'";
+
+        $result = $conn->query($sql);
+        if (mysqli_affected_rows($conn) > 0) {
+            return true;
+        }
+        return false;
+
+    }
+
 
     public function check_credentials($email,$password,$type){
         $tmp = false;

@@ -121,6 +121,7 @@ if ($isAuth) {
                     $members->db = $db;
                     $members->layout();
                 });
+
                 $klein->respond('GET', '/add', function ($request, $response) {
                     require 'views/member_add.php';
                     (new member_add())->layout();
@@ -311,9 +312,25 @@ if ($isAuth) {
                     (new books_add())->layout();
                 });
 
-                $klein->respond('GET', '/update', function ($request, $response) {
+                $klein->respond('GET', '/update/[:bid]', function ($request, $response) {
                     require 'views/update_books.php';
-                    (new update_books())->layout();
+                    $update_books = new update_books();
+                    $update_books->id = $request->bid;
+                    $update_books->layout();
+                });
+
+                $klein->respond('POST', '/update/[:bid]', function ($request, $response) {
+                    require 'views/update_books.php';
+                    $update_books = new update_books();
+                    $db = new \db();
+                    $update_books->id = $request->bid;
+                    $title = $request->param('title');
+                    $edition = $request->param('edition');
+                    $subject = $request->param('subject');
+                    
+
+
+                    $update_books->layout();
                 });
 
                 $klein->respond('POST', '/add', function ($request, $response) {

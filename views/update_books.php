@@ -12,7 +12,8 @@ use app\templates;
 
 class update_books extends templates\main_template
 {
-
+    public $id = null;
+    public $err_msg = null;
     public function title()
     {
         ?>
@@ -22,6 +23,10 @@ class update_books extends templates\main_template
 
     public function content()
     {
+        $db = new \db();
+        $book = $db->get_book_by_id($this->id);
+        $authors = $db->get_books_meta($book[0],'author');
+        $tags = $db->get_books_meta($book[0],'tag');
         ?>
         <div class="container">
 
@@ -32,23 +37,30 @@ class update_books extends templates\main_template
                             <label for="title">Title</label>
                             <input type="text" id="title" name="title" class="form-control"
                                    required=""
+                                   value="<?php echo $book[1] ?>"
                                    placeholder="Book Title..."/>
                         </div>
                         <div class="form-group">
                             <label for="edition">Edition</label>
                             <input type="text" id="edition" name="edition" class="form-control"
                                    required=""
+                                   value="<?php echo $book[2] ?>"
                                    placeholder="Book Edition..."/>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
                             <input type="text" id="subject" name="subject" class="form-control"
                                    required=""
+                                   value="<?php echo $book[3] ?>"
                                    placeholder="Subject..."/>
                         </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a class="btn btn-danger" href="#">Delete</a>
                     </form>
-
+                    <div class="clearfix"></div>
+                    <div style="padding: 10px 5px"></div>
                     <div class="col-lg-6">
+                        <a class="btn btn-default" href="#">Add author</a>
                         <table class="table table-condensed">
                             <thead>
                             <tr>
@@ -58,39 +70,36 @@ class update_books extends templates\main_template
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>John</td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Edit</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mary</td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Edit</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>July</td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Edit</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
+
+                            <?php
+
+                            if($authors)
+                            {
+
+                                foreach ($authors as $author)
+                                {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $author[0] ?></td>
+                                        <td>
+                                            <a class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
+
+
+
+
                             </tbody>
                         </table>
                     </div>
 
 
                     <div class="col-lg-6">
+                        <a class="btn btn-default" href="#">Add to stock</a>
                         <table class="table table-condensed">
                             <thead>
                             <tr>
@@ -100,33 +109,25 @@ class update_books extends templates\main_template
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>zxc123</td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Edit</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>zxc456</td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Edit</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>zxc789</td>
-                                <td>
-                                    <button type="button" class="btn btn-info">Edit</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                            <?php
+
+                            if($authors)
+                            {
+
+                                foreach ($tags as $tag)
+                                {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $tag[0] ?></td>
+                                        <td>
+                                            <a class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
+
                             </tbody>
                         </table>
                     </div>

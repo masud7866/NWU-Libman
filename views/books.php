@@ -34,6 +34,7 @@ class books extends templates\main_template
                         <th>Subject</th>
                         <th>Authors</th>
                         <th>Date of Book Added</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +60,9 @@ class books extends templates\main_template
                                 }
                                 ?></td>
                             <td><?php echo $row[4] ?></td>
+                            <td>
+                                <a title="View book" href="update/<?php echo $row[0] ?>"><i class="glyphicon glyphicon-eye-open"></i> View</a>
+                            </td>
                         </tr>
 
 
@@ -71,6 +75,7 @@ class books extends templates\main_template
                         <th>Subject</th>
                         <th>Authors</th>
                         <th>Date of Book Added</th>
+                        <th>Action</th>
                     </tr>
                     </tfoot>
                 </table>
