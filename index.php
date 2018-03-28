@@ -114,7 +114,44 @@ if ($isAuth) {
                 $dashboard->layout();
 
             });
+            $klein->with('/members', function () use ($klein) {
+                $klein->respond('GET', '/', function ($request, $response) {
+                    require 'views/members.php';
+                    $db = new \db();
+                    $members = (new members());
+                    $members->db = $db;
+                    $members->layout();
+                });
+                $klein->respond('GET', '/add', function ($request, $response) {
+                    require 'views/member_add.php';
+                    (new member_add())->layout();
+                });
 
+                $klein->respond('GET', '/update', function ($request, $response) {
+                    require 'views/update_member.php';
+                    (new update_member())->layout();
+                });
+
+                $klein->respond('POST', '/add', function ($request, $response) {
+                    require 'views/member_add.php';
+                    $name = $request->param('name');
+                    $email = $request->param('email');
+                    $phone = $request->param('phone');
+                    $type = $request->param('type');
+                    $id = $request->param('id');
+                    $join_date = $request->param('join-date');
+                    $db = new \db();
+                    $res = $db->add_members($name, $email, $phone, $type, $id, $join_date);
+                    $add_member = (new member_add());
+                    if ($res) {
+                        $add_member->err_msg = "<div class='bg-success'>The member is successfully added</div>";
+                    } else {
+                        $add_member->err_msg = "<div class='bg-danger'>The member could not be added</div>";
+                    }
+
+                    $add_member->layout();
+                });
+            });
             $klein->with('/borrowings', function () use ($klein) {
 
                 $klein->respond('GET', '/', function ($request, $response) {

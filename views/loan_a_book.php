@@ -24,6 +24,9 @@ class loan_a_book extends templates\main_template
 
     public function content()
     {
+        $db = new \db();
+
+        $db->get_all_members();
         ?>
 
         <div class="container">
@@ -46,7 +49,7 @@ class loan_a_book extends templates\main_template
                     <label for="name">Name</label>
                     <br>
                     <select class="selectpicker" data-live-search="true">
-                        <option data-tokens="ketchup mustard">Masud [103232]</option>
+                        <option data-tokens="ketchup mustard 103232">Masud [103232]</option>
                         <option data-tokens="mustard">Burger, Shake and a Smile</option>
                         <option data-tokens="frosting">Sugar, Spice and all things nice</option>
                     </select>
@@ -80,7 +83,7 @@ class loan_a_book extends templates\main_template
                            placeholder="Book Edition..."/>
                 </div>
 
-                <button type="submit" name="add_book" class="btn bg-success">Register</button>
+                <button type="submit" name="add_book" class="btn bg-success">Loan</button>
             </form>
         </div>
         <?php

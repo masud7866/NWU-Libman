@@ -107,6 +107,13 @@ class main_template
                                 <li><a href="<?php echo APP_URL . "/staff/borrowings/" ?>">History</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#memberSubmenu" data-toggle="collapse" aria-expanded="false">Members</a>
+                            <ul class="collapse list-unstyled" id="memberSubmenu">
+                                <li><a href="<?php echo APP_URL . "/staff/members/add" ?>">Add Member</a></li>
+                                <li><a href="<?php echo APP_URL . "/staff/members/" ?>">View Members</a></li>
+                            </ul>
+                        </li>
                         <?php }else{ ?>
                         <li>
                             <a href="<?php echo APP_URL . "/manager/dashboard" ?>">Dashboard</a>
