@@ -43,6 +43,28 @@ class db{
         }
     }
 
+    public function get_book_by_id($id){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql="select * from `books` where `id`=$id";
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            return ($result->fetch_all())[0];
+        }
+        return false;
+    }
+
+    public function get_all_borrowings(){
+
+    }
+
+
     public function get_books_count(){
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -517,7 +539,47 @@ class db{
                 return false;
             }
     }
+    public function get_member_info_by_id($id,$field){
 
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql="SELECT $field FROM `members`WHERE `id`= '$id'";
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            return ($result->fetch_all())[0][0];
+        }
+        return false;
+
+
+
+
+    }
+
+    public function get_member_meta_info_by_id($id,$key){
+        //connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+        if ($conn->connect_error) {
+            return false;
+        }
+
+        $sql="SELECT `meta_value` FROM `members_meta` WHERE `id`= '$id' and `meta_key`=$key";
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            return ($result->fetch_all())[0][0];
+        }
+        return false;
+
+    }
+
+
+    // Create connection
 
     public function get_user_info_by_email($email,$type,$field)
     {

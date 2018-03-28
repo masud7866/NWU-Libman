@@ -30,11 +30,12 @@ class borrowings extends templates\main_template
                     <thead>
                     <tr>
                         <th></th>
-                        <th>Title</th>
+                        <th>Book Title</th>
                         <th>Edition</th>
                         <th>Subject</th>
                         <th>Authors</th>
-                        <th>Date of Book Added</th>
+                        <th>Member Name</th>
+                        <th>Due By</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,11 +70,12 @@ class borrowings extends templates\main_template
                     <tfoot>
                     <tr>
                         <th></th>
-                        <th>Title</th>
+                      <th>Book Title</th>
                         <th>Edition</th>
                         <th>Subject</th>
                         <th>Authors</th>
-                        <th>Date of Book Added</th>
+                        <th>Member Name</th>
+                        <th>Due By</th>
                     </tr>
                     </tfoot>
                 </table>
