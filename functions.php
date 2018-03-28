@@ -571,7 +571,6 @@ class db{
             return ($result->fetch_all())[0][0];
         }
         return false;
-
     }
 
     public function insert_session($email,$type,$code)
@@ -589,7 +588,6 @@ class db{
         $result = $conn->query($sql);
 
         return $result;
-
     }
 
 
@@ -611,6 +609,7 @@ class authenticator{
     }
     public function authenicate($email,$pass,$type)
     {
+
         $db = new db();
 
 
@@ -623,11 +622,10 @@ class authenticator{
                 $cookie = new \Delight\Cookie\Cookie('PHPSESID');
                 $cookie->setValue($phpsesid);
                 $cookie->setMaxAge(60 * 60 * 24);
-// $cookie->setExpiryTime(time() + 60 * 60 * 24);
                 $cookie->setPath('/');
                 $cookie->setSameSiteRestriction('Strict');
-// echo $cookie;
                 $cookie->save();
+                return true;
             }
             else
             {
@@ -635,12 +633,13 @@ class authenticator{
             }
 
         }
+        else
+        {
+            return false;
+        }
 
 
-
-
-
-        var_dump(\Delight\Cookie\Cookie::exists('PHPSESID'));
+      //  var_dump(\Delight\Cookie\Cookie::exists('PHPSESID'));
 
     }
 
@@ -652,6 +651,7 @@ class authenticator{
 
 
 $check = new db();
+$check2 = new authenticator();
 
 //$check->get_all_books();
 //$check->remove_from_stock('17',array('A6VG','Zetd'));
@@ -669,3 +669,4 @@ $check = new db();
 //$check->get_all_books();
 //$check->get_user_info_by_id(5,'manager','email');
 //$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf');
+//$check2->authenicate("zamanpranto@gmail.com","test1234","manager");
