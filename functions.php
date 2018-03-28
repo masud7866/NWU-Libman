@@ -252,6 +252,20 @@ class db{
         return $result->fetch_all();
     }
 
+    public function get_all_staffs(){
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT * FROM staffs";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
+
     public function remove_manager_staff($manager_staff_id, $type){
         $tmp = false;
 

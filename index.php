@@ -22,6 +22,7 @@ use app\views\manager_add;
 use app\views\managers;
 use app\views\member_add;
 use app\views\staff_add;
+use app\views\staffs;
 
 
 require 'vendor/autoload.php';          //Loads up whole vendor packages which are installed in vendor folder through composer, Check getcomposer.org documentation for more info
@@ -106,9 +107,9 @@ $klein->with('/manager', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
             require 'views/managers.php';
             $db = new \db();
-            $books = (new managers());
-            $books->db = $db;
-            $books->layout();
+            $managers = (new managers());
+            $managers->db = $db;
+            $managers->layout();
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/manager_add.php';
@@ -137,7 +138,11 @@ $klein->with('/manager', function () use ($klein) {
 
     $klein->with('/staffs', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
-            return 'view all staffs';
+            require 'views/staffs.php';
+            $db = new \db();
+            $staffs = (new staffs());
+            $staffs->db = $db;
+            $staffs->layout();
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/staff_add.php';

@@ -82,28 +82,28 @@ class main_template
                         <li>
                             <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
                             <ul class="collapse list-unstyled" id="bookSubmenu">
-                                <li><a href="<?php echo APP_URL . "/manager/books/add" ?>">Add Books</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/books/add" ?>">Add Book</a></li>
                                 <li><a href="<?php echo APP_URL . "/manager/books/" ?>">View Books</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#managerSubmenu" data-toggle="collapse" aria-expanded="false">Managers</a>
                             <ul class="collapse list-unstyled" id="managerSubmenu">
-                                <li><a href="<?php echo APP_URL . "/manager/managers/add" ?>">Add Managers</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/managers/add" ?>">Add Manager</a></li>
                                 <li><a href="<?php echo APP_URL . "/manager/managers/" ?>">View Managers</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false">Staffs</a>
                             <ul class="collapse list-unstyled" id="staffSubmenu">
-                                <li><a href="<?php echo APP_URL . "/manager/staffs/add" ?>">Add Staffs</a></li>
-                                <li><a href="<?php echo APP_URL . "/manager/staffs/" ?>">View Managers</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/staffs/add" ?>">Add Staff</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/staffs/" ?>">View Staffs</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#memberSubmenu" data-toggle="collapse" aria-expanded="false">Members</a>
                             <ul class="collapse list-unstyled" id="memberSubmenu">
-                                <li><a href="<?php echo APP_URL . "/manager/members/add" ?>">Add Members</a></li>
+                                <li><a href="<?php echo APP_URL . "/manager/members/add" ?>">Add Member</a></li>
                                 <li><a href="<?php echo APP_URL . "/manager/members/" ?>">View Members</a></li>
                             </ul>
                         </li>
