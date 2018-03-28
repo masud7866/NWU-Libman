@@ -57,7 +57,7 @@ class main_template
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button" data-toggle="dropdown">Hello <?php
+                        <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button" data-toggle="dropdown">Hello, <?php
                             $auth = new \authenticator();
                             $db = new \db();
                             $isAuth = $auth->isAuthenicated();
