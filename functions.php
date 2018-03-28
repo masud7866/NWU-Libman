@@ -629,7 +629,7 @@ class authenticator{
     }
     public function authenicate($email,$pass,$type)
     {
-
+        require 'vendor/autoload.php';
         $db = new db();
 
 
@@ -663,7 +663,18 @@ class authenticator{
         require 'vendor/autoload.php';
         if(\Delight\Cookie\Cookie::exists('PHPSESID'))
         {
-          $phpsesid =  \Delight\Cookie\Cookie::get('PHPSESID');
+            $db = new db();
+            $phpsesid =  \Delight\Cookie\Cookie::get('PHPSESID');
+            $session = $db->get_session($phpsesid);
+
+            if ($session)
+            {
+                return $session;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -693,4 +704,4 @@ $check2 = new authenticator();
 //$check->get_user_info_by_id(5,'manager','email');
 //$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf');
 //$check2->authenicate("zamanpranto@gmail.com","test1234","manager");
-//var_dump($check->get_session("bd183c162da89f2471f2fe8d67b8fe51")[4]);
+//var_dump($check2->isAuthenicated());

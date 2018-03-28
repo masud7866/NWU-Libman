@@ -45,14 +45,32 @@ $klein->respond('GET', '/', function ($request, $response) {
 });
 
 $klein->respond('GET', '/login', function ($request, $response) {
-    require 'views/login.php';
-    (new login)->layout();
+    $auth = new \authenticator();
+
+    $isAuth = $auth->isAuthenicated();
+    if ($isAuth)
+    {
+        if($isAuth[2]=="staff")
+        {
+            $response->redirect("/staff/")->send();
+        }
+        else
+        {
+            $response->redirect("/manager/")->send();
+        }
+    }
+    else
+    {
+
+        require 'views/login.php';
+        (new login)->layout();
+    }
+
 });
 
 $klein->respond('POST', '/login', function ($request, $response) {
     require 'views/login.php';
     $login = new login;
-    $db = new \db();
     $auth = new \authenticator();
 
     $email = $request->param('email');
@@ -61,7 +79,23 @@ $klein->respond('POST', '/login', function ($request, $response) {
 
     if($auth->authenicate($email,$pass,$type))
     {
-
+        $isAuth = $auth->isAuthenicated();
+        if ($isAuth)
+        {
+            if($isAuth[2]=="staff")
+            {
+                $response->redirect("/staff/")->send();
+            }
+            else
+            {
+                $response->redirect("/manager/")->send();
+            }
+        }
+        else
+        {
+            $login->err_msg = "<div class='bg-danger'>Could not access your cookies</div>";
+            $login->layout();
+        }
     }
     else
     {
