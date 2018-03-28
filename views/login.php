@@ -22,13 +22,14 @@ class login{
 </head>
 <body>
 
+
 <div class="container">
-    <div class="panel panel-default">
+    <div class="panel panel-default loginform">
         <div class="panel-heading">
             <h1 align="center">Log In</h1>
         </div>
         <div class="panel-body">
-            <div class="formCenter">
+            <div>
                 <?php
 
                 if ($this->err_msg !=null) {
@@ -57,6 +58,7 @@ class login{
         </div>
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

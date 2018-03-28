@@ -32,7 +32,6 @@ class managers extends templates\main_template
                         <th></th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Status</th>
                         <th>Date of Manager Added</th>
                     </tr>
@@ -47,7 +46,6 @@ class managers extends templates\main_template
                             <td></td>
                             <td><?php echo $row[1] ?></td>
                             <td><?php echo $row[2] ?></td>
-                            <td><?php echo $row[3] ?></td>
                             <td><?php
                                 if($row[4]=="1")
                                 {
@@ -69,7 +67,6 @@ class managers extends templates\main_template
                         <th></th>
                          <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Status</th>
                         <th>Date of Manager Added</th>
                     </tr>
