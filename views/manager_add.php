@@ -23,6 +23,12 @@ class manager_add extends templates\main_template {
         ?>
         <div class="container">
             <div class="makeitcenter">
+                <div class="container">
+                    <div class="row">
+                        <h3 class="text-left">Add manager</h3>
+                    </div>
+
+                </div>
                 <?php
                 if ($this->err_msg !=null) {
                     echo $this->err_msg;

@@ -21,8 +21,16 @@ class books_add extends templates\main_template {
     public function content()
     {
         ?>
+
         <div class="container">
         <div class="makeitcenter">
+            <div class="container">
+                <div class="row">
+                    <h3 class="text-left">Add book</h3>
+                </div>
+
+            </div>
+
             <?php
 
             if ($this->err_msg !=null) {
