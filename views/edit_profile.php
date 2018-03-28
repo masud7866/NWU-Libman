@@ -25,9 +25,8 @@ class edit_profile extends templates\main_template
         $db = new \db();
         $isAuth = $auth->isAuthenicated();
         ?>
+
         <div class="container">
-
-
             <div class="miniinfo">
                 <form action="" method="post">
                     <div class="form-group">

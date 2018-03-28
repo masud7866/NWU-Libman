@@ -46,6 +46,20 @@ class db{
             return $result->fetch_all();
         }
     }
+    public function get_all_tags()
+    {
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        $sql = "SELECT meta_value FROM books_meta WHERE meta_key='tag'";
+        $result = $conn->query($sql);
+        $conn->close();
+        return $result->fetch_all();
+    }
 
     public function get_book_by_id($id){
         // Create connection
