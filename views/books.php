@@ -209,7 +209,7 @@ class books extends templates\main_template
             ?>
              <div class="container">
                  <div class="row">
-                     <h3>No record found!</h3>
+                     <h3 class="text-danger">No record found!</h3>
                  </div>
 
              </div>
