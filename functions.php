@@ -504,7 +504,7 @@ class db{
 
     }
 
-    public function insert_session($email,$type,$code,$ua)
+    public function insert_session($email,$type,$code)
     {
         // Create connection
         $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
@@ -514,7 +514,7 @@ class db{
             return false;
         }
         $uid = $this->get_user_info_by_email($email,$type,'id');
-
+        $ua = $_SERVER['HTTP_USER_AGENT'];
         $sql = "INSERT INTO `sessions` (`id`, `user_id`, `type`, `code`, `user_agent`, `created_at`) VALUES (NULL,$uid, '$type', '$code', '$ua', CURRENT_TIMESTAMP);";
         $result = $conn->query($sql);
 
@@ -548,18 +548,27 @@ class authenticator{
         {
             $phpsesid = md5($db->generateRandomString());
 
+            if($db->insert_session($email,$type,$phpsesid))
+            {
+                $cookie = new \Delight\Cookie\Cookie('PHPSESID');
+                $cookie->setValue($phpsesid);
+                $cookie->setMaxAge(60 * 60 * 24);
+// $cookie->setExpiryTime(time() + 60 * 60 * 24);
+                $cookie->setPath('/');
+                $cookie->setSameSiteRestriction('Strict');
+// echo $cookie;
+                $cookie->save();
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
 
 
-        $cookie = new \Delight\Cookie\Cookie('PHPSESID');
-        $cookie->setValue($phpsesid);
-        $cookie->setMaxAge(60 * 60 * 24);
-// $cookie->setExpiryTime(time() + 60 * 60 * 24);
-        $cookie->setPath('/');
-        $cookie->setSameSiteRestriction('Strict');
-// echo $cookie;
-        $cookie->save();
+
 
         var_dump(\Delight\Cookie\Cookie::exists('PHPSESID'));
 
@@ -589,4 +598,4 @@ $check = new db();
 //$check->retrieve_book("20","DAQ1J0yZ");
 //$check->get_all_books();
 //$check->get_user_info_by_id(5,'manager','email');
-//$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf','asdfasdfasdf');
+//$check->insert_session('ieitlabs@gmail.com','manager','asdfasdfasdf6er6a5dfasdf');
