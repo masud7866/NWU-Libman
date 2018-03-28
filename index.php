@@ -19,6 +19,7 @@ use app\views\dashboard;
 use app\views\edit_profile;
 use app\views\login;
 use app\views\manager_add;
+use app\views\managers;
 use app\views\member_add;
 use app\views\staff_add;
 
@@ -103,7 +104,11 @@ $klein->with('/manager', function () use ($klein) {
 
     $klein->with('/managers', function () use ($klein) {
         $klein->respond('GET', '/', function ($request, $response) {
-            return 'view all managers';
+            require 'views/managers.php';
+            $db = new \db();
+            $books = (new managers());
+            $books->db = $db;
+            $books->layout();
         });
         $klein->respond('GET', '/add', function ($request, $response) {
             require 'views/manager_add.php';
