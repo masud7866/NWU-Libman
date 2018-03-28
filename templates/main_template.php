@@ -67,8 +67,8 @@ class main_template
                             ?>
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo APP_URL . "/manager/profiles/edit" ?>">Profile</a></li>
-                            <li><a href="<?php echo APP_URL . "/manager/profiles/cpw" ?>">Change Password</a></li>
+                            <li><a href="<?php echo APP_URL . "/". $isAuth[2]."/profiles/edit" ?>">Profile</a></li>
+                            <li><a href="<?php echo APP_URL . "/".$isAuth[2]."/profiles/cpw" ?>">Change Password</a></li>
                             <li><a href="<?php echo APP_URL . "/logout" ?>">Log Out</a></li>
                         </ul>
                     </div>

@@ -114,12 +114,36 @@ if ($isAuth)
     if($isAuth[2]=="staff")
     {
         $klein->with('/staff', function () use ($klein){
+            $klein->respond('GET', '/', function ($request, $response) {
+                $response->redirect("/staff/dashboard")->send();
+            });
+
+            $klein->respond('GET', '/dashboard', function ($request, $response) {
+                require 'views/dashboard.php';
+                $db = new \db();
+                $dashboard = (new dashboard());
+                $dashboard->db = $db;
+                $dashboard->layout();
+
+            });
+
             $klein->respond('GET', '/borrowings', function ($request, $response) {
                 require 'views/borrowings.php';
                 $db = new \db();
                 $books = (new borrowings());
                 $books->db = $db;
                 $books->layout();
+            });
+
+            $klein->with('/profiles', function () use ($klein) {
+                $klein->respond('GET', '/edit', function ($request, $response) {
+                    require 'views/edit_profile.php';
+                    (new edit_profile())->layout();
+                });
+                $klein->respond('GET', '/cpw', function ($request, $response) {
+                    require 'views/change_password.php';
+                    (new change_password())->layout();
+                });
             });
         });
     }
