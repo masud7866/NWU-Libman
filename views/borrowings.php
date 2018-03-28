@@ -23,7 +23,8 @@ class borrowings extends templates\main_template
 
     public function content()
     {
-        if ($this->db->get_all_borrowings() !== false) {
+        $borrowings = $this->db->get_all_borrowings();
+        if ($borrowings !== false) {
             ?>
             <div class="container">
                 <table id="example" class="display" style="width:100%">
@@ -40,18 +41,18 @@ class borrowings extends templates\main_template
                     </thead>
                     <tbody>
                     <?php
-                    foreach($this->db->get_all_borrowings() as $row)
+                    foreach($borrowings as $row)
                     {
 
                         ?>
                         <tr>
                             <td></td>
-                            <td><?php echo $row["books_title"] ?></td>
-                            <td><?php echo $row["edition"] ?></td>
-                            <td><?php echo $row["subject"] ?></td>
-                            <td><?php echo $row["authors"] ?></td>
-                            <td><?php echo $row["member_name"] ?></td>
-                            <td><?php echo $row["due_by"] ?></td>
+                            <td><?php echo $row["books_title"]; ?></td>
+                            <td><?php echo $row["edition"]; ?></td>
+                            <td><?php echo $row["subject"]; ?></td>
+                            <td><?php echo $row["authors"]; ?></td>
+                            <td><?php echo $row["member_name"]; ?></td>
+                            <td><?php echo $row["due_by"]; ?></td>
                         </tr>
 
 

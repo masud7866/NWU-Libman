@@ -94,10 +94,22 @@ class main_template
                 } else {
                     ?>
                     <ul class="list-unstyled components">
+
+                        <?php if ($isAuth[2] == "staff") { ?>
+                        <li>
+                            <a href="<?php echo APP_URL . "/staff/dashboard" ?>">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false">Borrowings</a>
+                            <ul class="collapse list-unstyled" id="staffSubmenu">
+                                <li><a href="<?php echo APP_URL . "/staff/borrowings/add" ?>">Loan A Book</a></li>
+                                <li><a href="<?php echo APP_URL . "/staff/borrowings" ?>">History</a></li>
+                            </ul>
+                        </li>
+                        <?php }else{ ?>
                         <li>
                             <a href="<?php echo APP_URL . "/manager/dashboard" ?>">Dashboard</a>
                         </li>
-
                         <li>
                             <a href="#bookSubmenu" data-toggle="collapse" aria-expanded="false">Books</a>
                             <ul class="collapse list-unstyled" id="bookSubmenu">
@@ -128,6 +140,7 @@ class main_template
                         </li>
                     </ul>
                     <?php
+                    }
                 }
                 ?>
             </nav>
