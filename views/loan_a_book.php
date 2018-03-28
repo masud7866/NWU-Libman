@@ -32,7 +32,7 @@ class loan_a_book extends templates\main_template
         <div class="container">
             <div class="container">
                 <div class="row">
-                    <h3 class="text-left">Loan Book Form</h3>
+                    <h3 class="text-left panel-heading">Loan Book</h3>
                 </div>
 
             </div>
@@ -46,7 +46,7 @@ class loan_a_book extends templates\main_template
             ?>
             <form action="" method="post" class="formCenter">
                 <div class="form-group">
-                    <label for="member_id">Name</label>
+                    <label for="member_id">Member Name</label>
                     <br>
                     <select class="selectpicker" data-live-search="true" name="member_id" id="member_id">
                         <?php
@@ -59,7 +59,7 @@ class loan_a_book extends templates\main_template
                 </div>
 
                 <div class="form-group">
-                    <label for="book_id">Book Name</label>
+                    <label for="book_id">Book Title</label>
                     <br>
                     <select class="selectpicker" data-live-search="true" name="book_id" id="book_id">
                         <?php
