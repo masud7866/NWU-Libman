@@ -29,7 +29,6 @@ class members extends templates\main_template
                 <table id="example" class="display" style="width:100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -46,7 +45,6 @@ class members extends templates\main_template
 
                         ?>
                         <tr>
-                            <td></td>
                             <td><?php echo $row[1] ?></td>
                             <td><?php echo $row[2] ?></td>
                             <td><?php echo $row[3] ?></td>
@@ -79,7 +77,6 @@ class members extends templates\main_template
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th></th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>

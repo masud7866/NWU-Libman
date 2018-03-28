@@ -29,7 +29,6 @@ class books extends templates\main_template
                 <table id="example" class="display" style="width:100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Title</th>
                         <th>Edition</th>
                         <th>Subject</th>
@@ -44,7 +43,6 @@ class books extends templates\main_template
 
                         ?>
                         <tr>
-                            <td></td>
                             <td><?php echo $row[1] ?></td>
                             <td><?php echo $row[2] ?></td>
                             <td><?php echo $row[3] ?></td>
@@ -68,7 +66,6 @@ class books extends templates\main_template
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th></th>
                         <th>Title</th>
                         <th>Edition</th>
                         <th>Subject</th>

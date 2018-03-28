@@ -30,7 +30,6 @@ class borrowings extends templates\main_template
                 <table id="example" class="display" style="width:100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Book Title</th>
                         <th>Edition</th>
                         <th>Subject</th>
@@ -46,7 +45,6 @@ class borrowings extends templates\main_template
 
                         ?>
                         <tr>
-                            <td></td>
                             <td><?php echo $row["books_title"]; ?></td>
                             <td><?php echo $row["edition"]; ?></td>
                             <td><?php echo $row["subject"]; ?></td>
@@ -60,7 +58,6 @@ class borrowings extends templates\main_template
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th></th>
                       <th>Book Title</th>
                         <th>Edition</th>
                         <th>Subject</th>
