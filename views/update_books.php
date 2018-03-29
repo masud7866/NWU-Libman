@@ -32,6 +32,16 @@ class update_books extends templates\main_template
 
             <div class="row">
                 <div class="col-lg-12">
+
+                    <?php
+
+                    if ($this->err_msg != null) {
+                        echo $this->err_msg;
+                        echo "<br>";
+                    }
+
+                    ?>
+
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -55,7 +65,7 @@ class update_books extends templates\main_template
                                    placeholder="Subject..."/>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <a class="btn btn-danger" href="#">Delete</a>
+                        <a class="btn btn-danger" href="../delete/<?php echo $this->id ; ?>">Delete</a>
                     </form>
                     <div class="clearfix"></div>
                     <div style="padding: 10px 5px"></div>
@@ -82,7 +92,7 @@ class update_books extends templates\main_template
                                     <tr>
                                         <td><?php echo $author[0] ?></td>
                                         <td>
-                                            <a class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </a>
+                                            <a href="../delete/<?php echo $book[0] ?>/author/<?php echo $author[0] ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </a>
                                         </td>
                                     </tr>
                                     <?php
@@ -111,7 +121,7 @@ class update_books extends templates\main_template
                             <tbody>
                             <?php
 
-                            if($authors)
+                            if($tags)
                             {
 
                                 foreach ($tags as $tag)
@@ -120,7 +130,7 @@ class update_books extends templates\main_template
                                     <tr>
                                         <td><?php echo $tag[0] ?></td>
                                         <td>
-                                            <a class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </a>
+                                            <a href="../delete/<?php echo $book[0] ?>/tag/<?php echo $tag[0] ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> </a>
                                         </td>
                                     </tr>
                                     <?php

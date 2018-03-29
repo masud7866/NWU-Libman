@@ -41,6 +41,7 @@ class loan_a_book extends templates\main_template
 
             if ($this->err_msg != null) {
                 echo $this->err_msg;
+                echo "<br>";
             }
 
             ?>

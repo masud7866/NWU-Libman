@@ -319,6 +319,31 @@ if ($isAuth) {
                     $update_books->layout();
                 });
 
+                $klein->respond('GET', '/delete/[:bid]', function ($request, $response) {
+                    $db = new \db();
+                    $db->delete_book($request->bid);
+                    $response->redirect("/manager/books/")->send();
+                });
+
+                $klein->respond('GET', '/delete/[:bid]/tag/[:btag]', function ($request, $response) {
+                    $db = new \db();
+                    $db->remove_from_stock($request->bid,array($request->btag));
+                    $response->redirect("/manager/books/update/" . $request->bid)->send();
+                });
+
+                $klein->respond('GET', '/delete/[:bid]/tag/[:btag]', function ($request, $response) {
+                    $db = new \db();
+                    $db->remove_from_stock($request->bid,array($request->btag));
+                    $response->redirect("/manager/books/update/" . $request->bid)->send();
+                });
+
+                $klein->respond('GET', '/delete/[:bid]/author/[:auth]', function ($request, $response) {
+                    $db = new \db();
+                    $db->remove_book_author($request->bid,array($request->auth));
+                    $response->redirect("/manager/books/update/" . $request->bid)->send();
+                });
+
+
                 $klein->respond('POST', '/update/[:bid]', function ($request, $response) {
                     require 'views/update_books.php';
                     $update_books = new update_books();
@@ -327,11 +352,17 @@ if ($isAuth) {
                     $title = $request->param('title');
                     $edition = $request->param('edition');
                     $subject = $request->param('subject');
-                    
 
+                    $db->set_book_info($request->bid,'title',$title);
+                    $db->set_book_info($request->bid,'edition',$edition);
+                    $db->set_book_info($request->bid,'subject',$subject);
+
+                    $update_books->err_msg = "<div class='bg-success'>Book information updated</div>";
 
                     $update_books->layout();
                 });
+
+
 
                 $klein->respond('POST', '/add', function ($request, $response) {
                     require 'views/books_add.php';

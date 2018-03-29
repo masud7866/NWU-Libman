@@ -271,6 +271,32 @@ class db{
         return $tmp;
     }
 
+    public function remove_book_author($book_id, $authors){
+        $tmp = false;
+        // Create connection
+        $conn = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_DB);
+
+        // Check connection
+        if ($conn->connect_error) {
+            return false;
+        }
+        for($i=0;$i<count($authors);$i++)
+        {
+            $sql = "DELETE FROM books_meta WHERE book_id = '$book_id' AND meta_key = 'author' AND meta_value = '$authors[$i]'";
+            $result = $conn->query($sql);
+            if (mysqli_affected_rows($conn)>0)
+            {
+                $tmp = true;
+            }
+            else{
+                $tmp = false;
+            }
+
+        }
+        $conn->close();
+        return $tmp;
+    }
+
     public function add_members($name, $email, $phone, $type, $id, $join_date){
         $tmp = false;
 
