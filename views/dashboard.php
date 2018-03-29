@@ -68,7 +68,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Total available copies</h3>
+                        <h3 class="dash-title">Available copies</h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->get_av_copies_count() as $row)
                             {
@@ -78,7 +78,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Book lend</h3>
+                        <h3 class="dash-title">Copies in members' possession</h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->count_borrowed_book() as $row)
                             {
