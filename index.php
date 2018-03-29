@@ -398,6 +398,12 @@ if ($isAuth) {
                     $managers->db = $db;
                     $managers->layout();
                 });
+                $klein->respond('GET', '/delete/[:id]', function ($request, $response) {
+                    $db = new \db();
+                    $db->remove_manager_staff($request->id,'manager');
+                    $response->redirect("/manager/managers/")->send();
+                });
+
                 $klein->respond('GET', '/add', function ($request, $response) {
                     require 'views/manager_add.php';
                     (new manager_add())->layout();
@@ -428,6 +434,13 @@ if ($isAuth) {
                     $staffs->db = $db;
                     $staffs->layout();
                 });
+
+                $klein->respond('GET', '/delete/[:id]', function ($request, $response) {
+                    $db = new \db();
+                    $db->remove_manager_staff($request->id,'staff');
+                    $response->redirect("/manager/staffs/")->send();
+                });
+
                 $klein->respond('GET', '/add', function ($request, $response) {
                     require 'views/staff_add.php';
                     (new staff_add())->layout();

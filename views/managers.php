@@ -33,6 +33,7 @@ class managers extends templates\main_template
                         <th>Email</th>
                         <th>Status</th>
                         <th>Date of Manager Added</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,9 @@ class managers extends templates\main_template
                                     }
                                 ?></td>
                             <td><?php echo $row[5] ?></td>
+                            <td>
+                                <a title="Delete" href="delete/<?php echo $row[0] ?>"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                            </td>
                         </tr>
 
 
@@ -66,6 +70,7 @@ class managers extends templates\main_template
                         <th>Email</th>
                         <th>Status</th>
                         <th>Date of Manager Added</th>
+                        <th>Action</th>
                     </tr>
                     </tfoot>
                 </table>
