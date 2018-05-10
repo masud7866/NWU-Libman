@@ -18,7 +18,7 @@ class loan_a_book extends templates\main_template
     public function title()
     {
         ?>
-        Loan A Book
+        Lend A Book
         <?php
     }
 
@@ -83,7 +83,7 @@ class loan_a_book extends templates\main_template
                         {
                             $book = $db->get_book_by_id($row[1]);
                             ?>
-                            <option data-tokens="<?php echo $row[0] ?>" name="book_tag" value="<?php echo $row[0] ?>"><?php echo $row[0] . " [" . $book[1] . " " . $book[2] . " edition ]"?></option>
+                            <option data-id="<?php echo $book[0]?>" data-tokens="<?php echo $row[0] ?>" name="book_tag" value="<?php echo $row[0] ?>"><?php echo $row[0] . " [" . $book[1] . " " . $book[2] . " edition ]"?></option>
                         <?php } ?>
 
                     </select>
@@ -99,6 +99,8 @@ class loan_a_book extends templates\main_template
                 <button type="submit" name="add_book" class="btn bg-success">Loan</button>
             </form>
         </div>
+
+
 
 
         <?php

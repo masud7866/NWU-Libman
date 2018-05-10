@@ -820,6 +820,8 @@ class db{
     }
 
 
+
+
     public function insert_session($email,$type,$code)
     {
         // Create connection

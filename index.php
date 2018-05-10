@@ -588,7 +588,33 @@ if ($isAuth) {
                     $db = new \db();
                     $db->update_user_profile($isAuth[1],$isAuth[2],'name',$name);
 
+
+                    $dp = $request->files('dp')['dp'];
+
                     $edit_profile = new edit_profile();
+
+                    if($dp['name']!="")
+                    {
+                        $target_file = upload_dir . basename($dp["name"]);
+                        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                        $fname = uniqid() . "_" . date_timestamp_get(date_create()) . '.' .  $imageFileType;
+                        $target_file = upload_dir . basename( $fname);
+
+                        $check = getimagesize($dp["tmp_name"]);
+                        if($check !== false) {
+                            if (move_uploaded_file($dp["tmp_name"], $target_file)) {
+                                chmod($target_file, 0666);
+                                $db->update_user_profile($isAuth[1],$isAuth[2],'avatar',$fname);
+                            } else {
+                                $edit_profile->err_msg = "<div class='bg-danger'>File could not be uploaded</div>";
+                            }
+
+                        } else {
+                            $edit_profile->err_msg = "<div class='bg-danger'>File is not an image</div>";
+                        }
+                    }
+
+
                     $edit_profile->layout();
 
                 });

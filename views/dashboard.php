@@ -28,7 +28,7 @@ class dashboard extends templates\main_template
 
                 <div class="col-lg-12">
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Total Books</h3>
+                        <h3 class="dash-title"><a href="books/">Total Books</a></h3>
                         <h1 class="dash-score"><?php
                         foreach ($this->db->get_books_count() as $row)
                         {
@@ -38,7 +38,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Total Members</h3>
+                        <h3 class="dash-title"><a href="members/">Total Members</a> </h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->get_members_count() as $row)
                             {
@@ -48,7 +48,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Total Staff</h3>
+                        <h3 class="dash-title"><a href="staffs/">Total Staff</a> </h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->get_staffs_count() as $row)
                             {
@@ -58,7 +58,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Total Manager</h3>
+                        <h3 class="dash-title"><a href="managers/">Total Manager</a> </h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->get_managers_count() as $row)
                             {
@@ -68,7 +68,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Available copies</h3>
+                        <h3 class="dash-title"><a href="books/">Available copies</a> </h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->get_av_copies_count() as $row)
                             {
@@ -78,7 +78,7 @@ class dashboard extends templates\main_template
                     </div>
 
                     <div class="col-lg-3 dashstyle">
-                        <h3 class="dash-title">Copies in members' possession</h3>
+                        <h3 class="dash-title"><a href="borrowings/">Copies in members' possession</a> </h3>
                         <h1 class="dash-score"><?php
                             foreach ($this->db->count_borrowed_book() as $row)
                             {

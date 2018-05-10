@@ -20,6 +20,10 @@ class main_template
 {
     function layout()
     {
+
+        $auth = new \authenticator();
+        $db = new \db();
+        $isAuth = $auth->isAuthenicated();
         ?>
 
         <!DOCTYPE html>
@@ -55,11 +59,16 @@ class main_template
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <div class="dropdown">
+                        <div class="img-thumbnail" align="right" style="margin-top: 15px;" >
+                            <img width="20px" height="20px" src="/assets/images/<?php echo $db->get_user_info_by_id($isAuth[1],$isAuth[2],'avatar'); ?>" />
+
+                        </div>
+
+
                         <button class="btn btn-primary dropdown-toggle btnpositionfix" type="button"
                                 data-toggle="dropdown">Hello, <?php
-                            $auth = new \authenticator();
-                            $db = new \db();
-                            $isAuth = $auth->isAuthenicated();
+
+
                             if ($isAuth) {
                                 echo $db->get_user_info_by_id($isAuth[1], $isAuth[2], 'name');
                             }
@@ -101,7 +110,7 @@ class main_template
                         <li>
                             <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false">Borrowings</a>
                             <ul class="collapse list-unstyled" id="staffSubmenu">
-                                <li><a href="<?php echo APP_URL . "/staff/borrowings/loan" ?>">Loan A Book</a></li>
+                                <li><a href="<?php echo APP_URL . "/staff/borrowings/loan" ?>">Lend A Book</a></li>
                                 <li><a href="<?php echo APP_URL . "/staff/borrowings/" ?>">History</a></li>
                             </ul>
                         </li>
